@@ -2,5 +2,11 @@
   "name": "woman-language-translator",
   "version": "1.0.0",
   "description": "AI-powered women's language translator",
-  "main": "index.html"
+  "main": "index.html",
+  "scripts": {
+    "dev": "vercel dev"
+  },
+  "dependencies": {
+    "@vercel/node": "^3.0.0"
+  }
 }

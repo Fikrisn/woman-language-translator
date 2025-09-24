@@ -55,7 +55,7 @@ Berikan terjemahan yang:
 Jawab hanya dengan terjemahannya saja, tanpa penjelasan tambahan.`;
 
     // Call Gemini API
-    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${AIzaSyDgE7MxwPPY1AcvEXqBiE_s4SqTwFpyv_g}`, {
+    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${API_KEY}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
