@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Penerjemah Bahasa Wanita - Memahami Komunikasi dengan Lebih Baik</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .translator-section {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .examples-section {
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #5a67d8;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #4a5568;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 1rem;
+            resize: vertical;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #5a67d8;
+            box-shadow: 0 0 0 3px rgba(90, 103, 216, 0.1);
+        }
+
+        .translate-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #5a67d8, #667eea);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .translate-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(90, 103, 216, 0.3);
+        }
+
+        .translate-btn:disabled {
+            background: #cbd5e0;
+            cursor: not-allowed;
+        }
+
+        .spinner {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #ffffff;
+            border-top: 2px solid transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .example-item {
+            background: #f7fafc;
+            border-left: 4px solid #5a67d8;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .example-item:hover {
+            background: #edf2f7;
+            transform: translateX(5px);
+        }
+
+        .example-original {
+            font-style: italic;
+            color: #e53e3e;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .example-translation {
+            color: #38a169;
+            font-weight: 500;
+        }
+
+        .footer {
+            text-align: center;
+            color: white;
+            margin-top: 40px;
+            padding: 20px;
+        }
+
+        .footer a {
+            color: #90cdf4;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .translator-section,
+            .examples-section {
+                padding: 20px;
+            }
+        }
+
+        .error-message {
+            background: #fed7d7;
+            color: #c53030;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            display: none;
+        }
+
+        .success-message {
+            background: #c6f6d5;
+            color: #276749;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            display: none;
+        }
+
+        .quick-examples {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .quick-example-btn {
+            background: #edf2f7;
+            border: 2px solid #e2e8f0;
+            border-radius: 20px;
+            padding: 8px 16px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #4a5568;
+        }
+
+        .quick-example-btn:hover {
+            background: #5a67d8;
+            color: white;
+            border-color: #5a67d8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>🌸 Penerjemah Bahasa Wanita</h1>
+            <p>Memahami komunikasi dengan lebih baik menggunakan AI</p>
+        </header>
+
+        <div class="main-content">
+            <div class="translator-section">
+                <h2 class="section-title">
+                    🤖 Penerjemah AI
+                </h2>
+                
+                <div class="quick-examples">
+                    <button class="quick-example-btn" onclick="setExample('Terserah kamu deh...')">Terserah kamu deh...</button>
+                    <button class="quick-example-btn" onclick="setExample('Gak apa-apa kok')">Gak apa-apa kok</button>
+                    <button class="quick-example-btn" onclick="setExample('Udah tau aja deh...')">Udah tau aja deh...</button>
+                    <button class="quick-example-btn" onclick="setExample('Kamu pasti lupa ya...')">Kamu pasti lupa ya...</button>
+                </div>
+
+                <div class="input-group">
+                    <label for="inputText">Masukkan percakapan yang ingin diterjemahkan:</label>
+                    <textarea id="inputText" rows="4" placeholder="Contoh: 'Terserah kamu deh...' atau 'Gak apa-apa kok'"></textarea>
+                </div>
+
+                <button onclick="translateText()" class="translate-btn" id="translateBtn">
+                    <span id="btnText">🔄 Terjemahkan</span>
+                </button>
+
+                <div class="input-group">
+                    <label for="outputText">Hasil terjemahan:</label>
+                    <textarea id="outputText" rows="6" readonly placeholder="Hasil terjemahan akan muncul di sini..."></textarea>
+                </div>
+
+                <div id="errorMessage" class="error-message"></div>
+                <div id="successMessage" class="success-message"></div>
+            </div>
+
+            <div class="examples-section">
+                <h2 class="section-title">
+                    📚 Contoh Terjemahan
+                </h2>
+
+                <div class="example-item" onclick="setExample('Terserah kamu deh...')">
+                    <div class="example-original">"Terserah kamu deh..."</div>
+                    <div class="example-translation">→ "Saya merasa kesal karena pendapat saya tidak didengar. Saya ingin Anda mempertimbangkan perasaan saya dalam mengambil keputusan ini."</div>
+                </div>
+
+                <div class="example-item" onclick="setExample('Gak apa-apa kok')">
+                    <div class="example-original">"Gak apa-apa kok"</div>
+                    <div class="example-translation">→ "Sebenarnya saya merasa kecewa, tapi saya tidak ingin membuat masalah. Saya berharap Anda bisa memahami perasaan saya tanpa saya harus menjelaskan secara detail."</div>
+                </div>
+
+                <div class="example-item" onclick="setExample('Kamu pasti lupa ya...')">
+                    <div class="example-original">"Kamu pasti lupa ya..."</div>
+                    <div class="example-translation">→ "Saya merasa tidak diprioritaskan. Hal ini penting bagi saya dan saya berharap Anda bisa lebih memperhatikan hal-hal yang berarti untuk saya."</div>
+                </div>
+
+                <div class="example-item" onclick="setExample('Udah tau aja deh...')">
+                    <div class="example-original">"Udah tau aja deh..."</div>
+                    <div class="example-translation">→ "Saya merasa Anda kurang peka terhadap situasi ini. Saya berharap Anda bisa lebih proaktif dalam memahami apa yang saya butuhkan."</div>
+                </div>
+
+                <div class="example-item" onclick="setExample('Capek deh ngomong sama kamu')">
+                    <div class="example-original">"Capek deh ngomong sama kamu"</div>
+                    <div class="example-translation">→ "Saya merasa frustrasi karena komunikasi kita tidak efektif. Saya butuh Anda mendengarkan dengan lebih baik dan memahami perspektif saya."</div>
+                </div>
+
+                <div class="example-item" onclick="setExample('Iya iya... bener kamu')">
+                    <div class="example-original">"Iya iya... bener kamu"</div>
+                    <div class="example-translation">→ "Saya tidak setuju dengan Anda, tapi saya memilih untuk tidak berdebat. Saya berharap Anda bisa lebih terbuka terhadap perspektif yang berbeda."</div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p>Dibuat dengan ❤️ untuk komunikasi yang lebih baik | Powered by <a href="https://ai.google.dev/" target="_blank">Gemini AI</a></p>
+        </footer>
+    </div>
+
+    <script>
+        function setExample(text) {
+            document.getElementById('inputText').value = text;
+            document.getElementById('inputText').focus();
+        }
+
+        async function translateText() {
+            const inputText = document.getElementById('inputText').value.trim();
+            const outputTextArea = document.getElementById('outputText');
+            const translateBtn = document.getElementById('translateBtn');
+            const btnText = document.getElementById('btnText');
+            const errorMessage = document.getElementById('errorMessage');
+            const successMessage = document.getElementById('successMessage');
+
+            // Reset messages
+            errorMessage.style.display = 'none';
+            successMessage.style.display = 'none';
+
+            // Validasi input
+            if (!inputText) {
+                showError('Harap masukkan teks yang ingin diterjemahkan!');
+                return;
+            }
+
+            // Disable button and show loading
+            translateBtn.disabled = true;
+            btnText.innerHTML = '<div class="spinner"></div> Menerjemahkan...';
+            outputTextArea.value = 'Sedang menerjemahkan...';
+
+            try {
+                // Panggil API backend Anda
+                const response = await fetch('/api/translate', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        text: inputText
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                
+                if (data.translation) {
+                    outputTextArea.value = data.translation;
+                    showSuccess('Terjemahan berhasil!');
+                } else {
+                    throw new Error('Format respons tidak valid dari server');
+                }
+
+            } catch (error) {
+                console.error('Error:', error);
+                outputTextArea.value = '';
+                
+                if (error.message.includes('404')) {
+                    showError('Endpoint API belum tersedia. Silakan setup backend terlebih dahulu.');
+                } else if (error.message.includes('500')) {
+                    showError('Terjadi kesalahan pada server. Coba lagi nanti.');
+                } else if (error.message.includes('429')) {
+                    showError('Terlalu banyak request. Coba lagi nanti.');
+                } else {
+                    showError(`Terjadi kesalahan: ${error.message}`);
+                }
+            } finally {
+                // Re-enable button
+                translateBtn.disabled = false;
+                btnText.innerHTML = '🔄 Terjemahkan';
+            }
+        }
+
+        function showError(message) {
+            const errorMessage = document.getElementById('errorMessage');
+            errorMessage.textContent = message;
+            errorMessage.style.display = 'block';
+        }
+
+        function showSuccess(message) {
+            const successMessage = document.getElementById('successMessage');
+            successMessage.textContent = message;
+            successMessage.style.display = 'block';
+        }
+
+        // Allow Enter key to trigger translation
+        document.getElementById('inputText').addEventListener('keydown', function(event) {
+            if (event.ctrlKey && event.key === 'Enter') {
+                translateText();
+            }
+        });
+
+        // Auto-resize textareas
+        function autoResize(textarea) {
+            textarea.style.height = 'auto';
+            textarea.style.height = textarea.scrollHeight + 'px';
+        }
+
+        document.getElementById('inputText').addEventListener('input', function() {
+            autoResize(this);
+        });
+
+        document.getElementById('outputText').addEventListener('input', function() {
+            autoResize(this);
+        });
+    </script>
+</body>
+</html>
