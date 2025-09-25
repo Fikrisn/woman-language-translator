@@ -16,6 +16,7 @@
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             color: #333;
+            line-height: 1.6;
         }
 
         .container {
@@ -24,53 +25,106 @@
             padding: 20px;
         }
 
-        .header {
+        /* Hero Section */
+        .hero {
             text-align: center;
             color: white;
-            margin-bottom: 40px;
+            padding: 80px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            margin-bottom: 60px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
         }
 
-        .header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
 
-        .header p {
-            font-size: 1.1rem;
+        .hero p {
+            font-size: 1.3rem;
             opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
-        .main-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            margin-bottom: 40px;
+        .cta-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #5a67d8, #667eea);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 30px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(90, 103, 216, 0.3);
         }
 
-        .translator-section {
-            background: white;
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-            backdrop-filter: blur(10px);
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(90, 103, 216, 0.4);
         }
 
+        /* Examples Section */
         .examples-section {
             background: rgba(255,255,255,0.95);
             border-radius: 20px;
-            padding: 30px;
+            padding: 40px;
+            margin-bottom: 60px;
             box-shadow: 0 15px 35px rgba(0,0,0,0.1);
             backdrop-filter: blur(10px);
         }
 
         .section-title {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
+            font-size: 2rem;
+            margin-bottom: 30px;
             color: #5a67d8;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            text-align: center;
+        }
+
+        .examples-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .example-item {
+            background: #f7fafc;
+            border-left: 4px solid #5a67d8;
+            padding: 20px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .example-item:hover {
+            background: #edf2f7;
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .example-original {
+            font-style: italic;
+            color: #e53e3e;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .example-translation {
+            color: #38a169;
+            font-weight: 500;
+        }
+
+        /* Translator Section */
+        .translator-section {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
         }
 
         .input-group {
@@ -142,94 +196,6 @@
             100% { transform: rotate(360deg); }
         }
 
-        .example-item {
-            background: #f7fafc;
-            border-left: 4px solid #5a67d8;
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .example-item:hover {
-            background: #edf2f7;
-            transform: translateX(5px);
-        }
-
-        .example-original {
-            font-style: italic;
-            color: #e53e3e;
-            margin-bottom: 10px;
-            font-weight: 500;
-        }
-
-        .example-translation {
-            color: #38a169;
-            font-weight: 500;
-        }
-
-        .footer {
-            text-align: center;
-            color: white;
-            margin-top: 40px;
-            padding: 20px;
-        }
-
-        .footer a {
-            color: #90cdf4;
-            text-decoration: none;
-        }
-
-        .footer a:hover {
-            text-decoration: underline;
-        }
-
-        @media (max-width: 768px) {
-            .main-content {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-            
-            .header h1 {
-                font-size: 2rem;
-            }
-            
-            .translator-section,
-            .examples-section {
-                padding: 20px;
-            }
-        }
-
-        .error-message {
-            background: #fed7d7;
-            color: #c53030;
-            padding: 15px;
-            border-radius: 8px;
-            margin-top: 15px;
-            display: none;
-        }
-
-        .success-message {
-            background: #c6f6d5;
-            color: #276749;
-            padding: 15px;
-            border-radius: 8px;
-            margin-top: 15px;
-            display: none;
-        }
-
-        .debug-info {
-            background: #e2e8f0;
-            color: #2d3748;
-            padding: 10px;
-            border-radius: 8px;
-            margin-top: 10px;
-            font-size: 0.9rem;
-            font-family: monospace;
-            display: none;
-        }
-
         .quick-examples {
             display: flex;
             flex-wrap: wrap;
@@ -253,83 +219,129 @@
             color: white;
             border-color: #5a67d8;
         }
+
+        .error-message {
+            background: #fed7d7;
+            color: #c53030;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            display: none;
+        }
+
+        .success-message {
+            background: #c6f6d5;
+            color: #276749;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            display: none;
+        }
+
+        .footer {
+            text-align: center;
+            color: white;
+            margin-top: 60px;
+            padding: 20px;
+        }
+
+        .footer a {
+            color: #90cdf4;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .examples-section,
+            .translator-section {
+                padding: 20px;
+            }
+            
+            .examples-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <header class="header">
+        <!-- Hero Section -->
+        <section class="hero">
             <h1>🌸 Penerjemah Bahasa Wanita</h1>
-            <p>Memahami komunikasi dengan lebih baik menggunakan AI</p>
-        </header>
+            <p>Memahami komunikasi dengan lebih baik menggunakan AI. Terjemahkan ucapan tersirat menjadi makna yang sebenarnya.</p>
+            <a href="#translator" class="cta-btn">Mulai Terjemahkan</a>
+        </section>
 
-        <div class="main-content">
-            <div class="translator-section">
-                <h2 class="section-title">
-                    🤖 Penerjemah AI
-                </h2>
-                
-                <div class="quick-examples">
-                    <button class="quick-example-btn" onclick="setExample('Terserah kamu deh...')">Terserah kamu deh...</button>
-                    <button class="quick-example-btn" onclick="setExample('Gak apa-apa kok')">Gak apa-apa kok</button>
-                    <button class="quick-example-btn" onclick="setExample('Udah tau aja deh...')">Udah tau aja deh...</button>
-                    <button class="quick-example-btn" onclick="setExample('Kamu pasti lupa ya...')">Kamu pasti lupa ya...</button>
-                </div>
-
-                <div class="input-group">
-                    <label for="inputText">Masukkan percakapan yang ingin diterjemahkan:</label>
-                    <textarea id="inputText" rows="4" placeholder="Contoh: 'Terserah kamu deh...' atau 'Gak apa-apa kok'"></textarea>
-                </div>
-
-                <button onclick="translateText()" class="translate-btn" id="translateBtn">
-                    <span id="btnText">🔄 Terjemahkan</span>
-                </button>
-
-                <div class="input-group">
-                    <label for="outputText">Hasil terjemahan:</label>
-                    <textarea id="outputText" rows="6" readonly placeholder="Hasil terjemahan akan muncul di sini..."></textarea>
-                </div>
-
-                <div id="errorMessage" class="error-message"></div>
-                <div id="successMessage" class="success-message"></div>
-                <div id="debugInfo" class="debug-info"></div>
-            </div>
-
-            <div class="examples-section">
-                <h2 class="section-title">
-                    📚 Contoh Terjemahan
-                </h2>
-
+        <!-- Examples Section -->
+        <section class="examples-section">
+            <h2 class="section-title">📚 Contoh Terjemahan</h2>
+            <div class="examples-grid">
                 <div class="example-item" onclick="setExample('Terserah kamu deh...')">
                     <div class="example-original">"Terserah kamu deh..."</div>
                     <div class="example-translation">→ "Saya merasa kesal karena pendapat saya tidak didengar. Saya ingin Anda mempertimbangkan perasaan saya dalam mengambil keputusan ini."</div>
                 </div>
-
                 <div class="example-item" onclick="setExample('Gak apa-apa kok')">
                     <div class="example-original">"Gak apa-apa kok"</div>
                     <div class="example-translation">→ "Sebenarnya saya merasa kecewa, tapi saya tidak ingin membuat masalah. Saya berharap Anda bisa memahami perasaan saya tanpa saya harus menjelaskan secara detail."</div>
                 </div>
-
                 <div class="example-item" onclick="setExample('Kamu pasti lupa ya...')">
                     <div class="example-original">"Kamu pasti lupa ya..."</div>
                     <div class="example-translation">→ "Saya merasa tidak diprioritaskan. Hal ini penting bagi saya dan saya berharap Anda bisa lebih memperhatikan hal-hal yang berarti untuk saya."</div>
                 </div>
-
                 <div class="example-item" onclick="setExample('Udah tau aja deh...')">
                     <div class="example-original">"Udah tau aja deh..."</div>
                     <div class="example-translation">→ "Saya merasa Anda kurang peka terhadap situasi ini. Saya berharap Anda bisa lebih proaktif dalam memahami apa yang saya butuhkan."</div>
                 </div>
-
                 <div class="example-item" onclick="setExample('Capek deh ngomong sama kamu')">
                     <div class="example-original">"Capek deh ngomong sama kamu"</div>
                     <div class="example-translation">→ "Saya merasa frustrasi karena komunikasi kita tidak efektif. Saya butuh Anda mendengarkan dengan lebih baik dan memahami perspektif saya."</div>
                 </div>
-
                 <div class="example-item" onclick="setExample('Iya iya... bener kamu')">
                     <div class="example-original">"Iya iya... bener kamu"</div>
                     <div class="example-translation">→ "Saya tidak setuju dengan Anda, tapi saya memilih untuk tidak berdebat. Saya berharap Anda bisa lebih terbuka terhadap perspektif yang berbeda."</div>
                 </div>
             </div>
-        </div>
+        </section>
+
+        <!-- Translator Section -->
+        <section id="translator" class="translator-section">
+            <h2 class="section-title">🤖 Penerjemah AI</h2>
+            
+            <div class="quick-examples">
+                <button class="quick-example-btn" onclick="setExample('Terserah kamu deh...')">Terserah kamu deh...</button>
+                <button class="quick-example-btn" onclick="setExample('Gak apa-apa kok')">Gak apa-apa kok</button>
+                <button class="quick-example-btn" onclick="setExample('Udah tau aja deh...')">Udah tau aja deh...</button>
+                <button class="quick-example-btn" onclick="setExample('Kamu pasti lupa ya...')">Kamu pasti lupa ya...</button>
+            </div>
+
+            <div class="input-group">
+                <label for="inputText">Masukkan percakapan yang ingin diterjemahkan:</label>
+                <textarea id="inputText" rows="4" placeholder="Contoh: 'Terserah kamu deh...' atau 'Gak apa-apa kok'"></textarea>
+            </div>
+
+            <button onclick="translateText()" class="translate-btn" id="translateBtn">
+                <span id="btnText">🔄 Terjemahkan</span>
+            </button>
+
+            <div class="input-group">
+                <label for="outputText">Hasil terjemahan:</label>
+                <textarea id="outputText" rows="6" readonly placeholder="Hasil terjemahan akan muncul di sini..."></textarea>
+            </div>
+
+            <div id="errorMessage" class="error-message"></div>
+            <div id="successMessage" class="success-message"></div>
+        </section>
 
         <footer class="footer">
             <p>Dibuat dengan ❤️ untuk komunikasi yang lebih baik | Powered by <a href="https://github.com/fikrisn" target="_blank">FkrDev</a></p>
@@ -349,12 +361,10 @@
             const btnText = document.getElementById('btnText');
             const errorMessage = document.getElementById('errorMessage');
             const successMessage = document.getElementById('successMessage');
-            const debugInfo = document.getElementById('debugInfo');
 
             // Reset messages
             errorMessage.style.display = 'none';
             successMessage.style.display = 'none';
-            debugInfo.style.display = 'none';
 
             // Validasi input
             if (!inputText) {
@@ -380,9 +390,6 @@
                         text: inputText
                     })
                 });
-
-                // Show debug info
-                showDebug(`Status: ${response.status}, URL: ${API_URL}`);
 
                 if (!response.ok) {
                     const errorText = await response.text();
@@ -439,12 +446,6 @@
             const successMessage = document.getElementById('successMessage');
             successMessage.textContent = message;
             successMessage.style.display = 'block';
-        }
-
-        function showDebug(message) {
-            const debugInfo = document.getElementById('debugInfo');
-            debugInfo.textContent = message;
-            debugInfo.style.display = 'block';
         }
 
         // Allow Enter key to trigger translation
