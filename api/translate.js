@@ -113,10 +113,19 @@ const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/m
 
     const data = await response.json();
     
-    // Parse the response
+    // Extract the text from Gemini response
+    const aiText = data.candidates[0].content.parts[0].text.trim();
+    
+    // Find JSON in the response (in case there's extra text)
+    const jsonMatch = aiText.match(/\{[\s\S]*\}/);
+    if (!jsonMatch) {
+      throw new Error('Respons AI tidak mengandung JSON valid');
+    }
+    
+    // Parse the JSON
     let parsedData;
     try {
-      parsedData = JSON.parse(data.candidates[0].content.parts[0].text.trim());
+      parsedData = JSON.parse(jsonMatch[0]);
     } catch (e) {
       throw new Error('Respons AI tidak valid');
     }
