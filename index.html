@@ -219,6 +219,17 @@
             display: none;
         }
 
+        .debug-info {
+            background: #e2e8f0;
+            color: #2d3748;
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-size: 0.9rem;
+            font-family: monospace;
+            display: none;
+        }
+
         .quick-examples {
             display: flex;
             flex-wrap: wrap;
@@ -280,6 +291,7 @@
 
                 <div id="errorMessage" class="error-message"></div>
                 <div id="successMessage" class="success-message"></div>
+                <div id="debugInfo" class="debug-info"></div>
             </div>
 
             <div class="examples-section">
@@ -320,7 +332,7 @@
         </div>
 
         <footer class="footer">
-            <p>Dibuat dengan ❤️ untuk komunikasi yang lebih baik | Powered by <a href="https://ai.google.dev/" target="_blank">Gemini AI</a></p>
+            <p>Dibuat dengan ❤️ untuk komunikasi yang lebih baik | Powered by <a href="https://github.com/fikrisn" target="_blank">FkrDev</a></p>
         </footer>
     </div>
 
@@ -337,10 +349,12 @@
             const btnText = document.getElementById('btnText');
             const errorMessage = document.getElementById('errorMessage');
             const successMessage = document.getElementById('successMessage');
+            const debugInfo = document.getElementById('debugInfo');
 
             // Reset messages
             errorMessage.style.display = 'none';
             successMessage.style.display = 'none';
+            debugInfo.style.display = 'none';
 
             // Validasi input
             if (!inputText) {
@@ -354,8 +368,13 @@
             outputTextArea.value = 'Sedang menerjemahkan...';
 
             try {
-                // Panggil API backend Anda
-                const response = await fetch('/api/translate', {
+                // Construct API URL
+                const API_URL = '/api/translate';
+                
+                console.log('Calling API:', API_URL);
+                console.log('Request payload:', { text: inputText });
+                
+                const response = await fetch(API_URL, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -365,11 +384,28 @@
                     })
                 });
 
+                console.log('Response status:', response.status);
+                console.log('Response headers:', Object.fromEntries(response.headers.entries()));
+
+                // Show debug info
+                showDebug(`Status: ${response.status}, URL: ${API_URL}`);
+
                 if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
+                    const errorText = await response.text();
+                    let errorData;
+                    
+                    try {
+                        errorData = JSON.parse(errorText);
+                    } catch (e) {
+                        errorData = { error: errorText };
+                    }
+                    
+                    console.error('API Error:', errorData);
+                    throw new Error(`HTTP ${response.status}: ${errorData.error || 'Unknown error'}`);
                 }
 
                 const data = await response.json();
+                console.log('Response data:', data);
                 
                 if (data.translation) {
                     outputTextArea.value = data.translation;
@@ -383,11 +419,15 @@
                 outputTextArea.value = '';
                 
                 if (error.message.includes('404')) {
-                    showError('Endpoint API belum tersedia. Silakan setup backend terlebih dahulu.');
+                    showError('Endpoint API tidak ditemukan. Pastikan file api/translate.js ada di folder yang tepat.');
+                } else if (error.message.includes('405')) {
+                    showError('Method tidak diizinkan. Pastikan API endpoint menerima method POST.');
                 } else if (error.message.includes('500')) {
-                    showError('Terjadi kesalahan pada server. Coba lagi nanti.');
+                    showError('Terjadi kesalahan pada server. Periksa log server atau environment variables.');
                 } else if (error.message.includes('429')) {
-                    showError('Terlalu banyak request. Coba lagi nanti.');
+                    showError('Terlalu banyak request. Coba lagi dalam beberapa saat.');
+                } else if (error.message.includes('Failed to fetch')) {
+                    showError('Gagal menghubungi server. Pastikan server berjalan dan tidak ada masalah CORS.');
                 } else {
                     showError(`Terjadi kesalahan: ${error.message}`);
                 }
@@ -408,6 +448,12 @@
             const successMessage = document.getElementById('successMessage');
             successMessage.textContent = message;
             successMessage.style.display = 'block';
+        }
+
+        function showDebug(message) {
+            const debugInfo = document.getElementById('debugInfo');
+            debugInfo.textContent = message;
+            debugInfo.style.display = 'block';
         }
 
         // Allow Enter key to trigger translation

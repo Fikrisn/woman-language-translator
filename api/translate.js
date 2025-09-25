@@ -1,11 +1,11 @@
 // api/translate.js - Vercel Serverless Function
 export default async function handler(req, res) {
-  // Set CORS headers
+  // Set CORS headers untuk semua response
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
   
-  // Handle preflight requests
+  // Handle preflight requests (OPTIONS)
   if (req.method === 'OPTIONS') {
     res.status(200).end();
     return;
@@ -13,15 +13,22 @@ export default async function handler(req, res) {
 
   // Only allow POST method
   if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method not allowed' });
+    console.log(`Method ${req.method} not allowed`);
+    return res.status(405).json({ 
+      error: 'Method not allowed',
+      allowedMethods: ['POST'],
+      receivedMethod: req.method 
+    });
   }
 
   try {
+    console.log('Received request body:', req.body);
+    
     const { text } = req.body;
 
     // Validasi input
     if (!text || typeof text !== 'string' || text.trim().length === 0) {
-      return res.status(400).json({ error: 'Text is required' });
+      return res.status(400).json({ error: 'Text is required and must be a non-empty string' });
     }
 
     // Ambil API Key dari environment variable
@@ -29,7 +36,7 @@ export default async function handler(req, res) {
     
     if (!API_KEY) {
       console.error('GEMINI_API_KEY not found in environment variables');
-      return res.status(500).json({ error: 'Server configuration error' });
+      return res.status(500).json({ error: 'Server configuration error - API key missing' });
     }
 
     // Prompt untuk AI
@@ -54,6 +61,8 @@ Berikan terjemahan yang:
 
 Jawab hanya dengan terjemahannya saja, tanpa penjelasan tambahan.`;
 
+    console.log('Calling Gemini API...');
+    
     // Call Gemini API
     const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${API_KEY}`, {
       method: 'POST',
@@ -65,9 +74,17 @@ Jawab hanya dengan terjemahannya saja, tanpa penjelasan tambahan.`;
           parts: [{
             text: prompt
           }]
-        }]
+        }],
+        generationConfig: {
+          temperature: 0.7,
+          topK: 40,
+          topP: 0.95,
+          maxOutputTokens: 1024,
+        }
       })
     });
+
+    console.log('Gemini API response status:', response.status);
 
     if (!response.ok) {
       const errorData = await response.json().catch(() => ({}));
@@ -83,13 +100,15 @@ Jawab hanya dengan terjemahannya saja, tanpa penjelasan tambahan.`;
     }
 
     const data = await response.json();
+    console.log('Gemini API response:', JSON.stringify(data, null, 2));
     
     if (data.candidates && data.candidates[0] && data.candidates[0].content) {
       const translation = data.candidates[0].content.parts[0].text.trim();
       
       return res.status(200).json({
         translation: translation,
-        success: true
+        success: true,
+        timestamp: new Date().toISOString()
       });
     } else {
       console.error('Invalid response format from Gemini API:', data);
@@ -100,7 +119,8 @@ Jawab hanya dengan terjemahannya saja, tanpa penjelasan tambahan.`;
     console.error('Server error:', error);
     return res.status(500).json({ 
       error: 'Terjadi kesalahan pada server',
-      details: process.env.NODE_ENV === 'development' ? error.message : undefined
+      message: error.message,
+      details: process.env.NODE_ENV === 'development' ? error.stack : undefined
     });
   }
 }
