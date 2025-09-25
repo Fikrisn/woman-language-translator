@@ -8,82 +8,138 @@
     <meta name="description" content="Penerjemah Bahasa Wanita — alat AI untuk memahami ucapan tersirat, meningkatkan empati dan komunikasi." />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <style>
-        :root{
-            --bg:#f7f7f8;
-            --card:#ffffff;
-            --text:#111216;
-            --muted:#6b7280;
-            --accent:#222; /* monochrome accent */
+        :root {
+            --bg: #f7f7f8;
+            --card: #ffffff;
+            --text: #111216;
+            --muted: #6b7280;
+            --accent: #222;
             --glass: rgba(255,255,255,0.6);
             --shadow: 0 8px 30px rgba(16,24,40,0.08);
-            --radius:14px;
-            --container:1100px;
-            --header-height:76px; /* added for fixed header offset */
-        }
-        *{box-sizing:border-box}
-        html { scroll-behavior: smooth; } /* smooth native scrolling */
-        html,body{height:100%}
-        body{
-            font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
-            background:linear-gradient(180deg,var(--bg),#efefef);
-            color:var(--text);
-            margin:0;
-            -webkit-font-smoothing:antialiased;
-            -moz-osx-font-smoothing:grayscale;
-            line-height:1.5;
+            --radius: 14px;
+            --container: 1100px;
+            --header-height: 76px;
         }
 
-        /* make layout full width (not centered) */
-        .wrap{width:100%;max-width:none;margin:0;padding:0}
+        * { box-sizing: border-box; }
 
-        /* header - make fixed full-width */
-        header{
-            position:fixed;
-            top:0;
-            left:0;
-            right:0;
-            height:var(--header-height);
-            display:flex;
-            align-items:center;
-            justify-content:space-between;
-            gap:20px;
-            padding:12px 40px;
-            background:rgba(255,255,255,0.78);
-            backdrop-filter:blur(6px);
-            box-shadow:0 6px 20px rgba(16,24,40,0.06);
-            z-index:1000;
-            margin-bottom:0;
+        html {
+            scroll-behavior: smooth;
         }
-        .brand{display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--text)}
-        .logo{
-            width:48px;height:48px;border-radius:10px;background:linear-gradient(180deg,#fff,#f2f2f2);
-            display:flex;align-items:center;justify-content:center;font-weight:800;color:var(--accent);box-shadow:var(--shadow);
-        }
-        .brand h3{font-size:1rem;margin:0}
-        nav{display:flex;gap:18px;align-items:center}
-        nav a{color:var(--muted);text-decoration:none;font-weight:600;padding:8px 12px;border-radius:10px}
-        nav a:hover{color:var(--accent);background:rgba(0,0,0,0.03)}
-        .cta-primary{background:var(--accent);color:#fff;padding:10px 16px;border-radius:10px;text-decoration:none;font-weight:600}
-        .cta-primary:hover{opacity:0.95;transform:translateY(-2px)}
 
-        /* ensure main content starts after fixed header */
-        main{padding-top: calc(var(--header-height) + 28px);}
-
-        /* hero - make it more prominent and impactful */
-        .hero{
-            width:100%;
-            border-radius:0;
-            padding:120px 6vw; /* increased padding for more impact */
-            display:grid;
-            grid-template-columns:1fr 420px;
-            gap:48px; /* increased gap */
-            align-items:center;
-            background: linear-gradient(135deg, rgba(0,0,0,0.05), rgba(0,0,0,0.03));
-            box-shadow:none;
-            border-bottom:2px solid rgba(0,0,0,0.05); /* stronger border */
-            position:relative;
-            overflow:hidden;
+        html, body {
+            height: 100%;
         }
+
+        body {
+            font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+            background: linear-gradient(180deg, var(--bg), #efefef);
+            color: var(--text);
+            margin: 0;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            line-height: 1.5;
+        }
+
+        /* Layout */
+        .wrap {
+            width: 100%;
+            max-width: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: var(--header-height);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 12px 40px;
+            background: rgba(255,255,255,0.78);
+            backdrop-filter: blur(6px);
+            box-shadow: 0 4px 12px rgba(16,24,40,0.04);
+            z-index: 1000;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            text-decoration: none;
+            color: var(--text);
+        }
+
+        .brand h3 {
+            font-size: 1rem;
+            margin: 0;
+        }
+
+        .brand div {
+            font-size: 12px;
+            color: var(--muted);
+        }
+
+        nav {
+            display: flex;
+            gap: 18px;
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--muted);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 8px 12px;
+            border-radius: 10px;
+            transition: color 0.3s, background 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+            background: rgba(0,0,0,0.03);
+        }
+
+        .cta-primary {
+            background: var(--accent);
+            color: #fff;
+            padding: 10px 16px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: opacity 0.3s, transform 0.3s;
+        }
+
+        .cta-primary:hover {
+            opacity: 0.95;
+            transform: translateY(-2px);
+        }
+
+        /* Main Content */
+        main {
+            padding-top: calc(var(--header-height) + 28px);
+        }
+
+        /* Hero */
+        .hero {
+            width: 100%;
+            border-radius: 0;
+            padding: 120px 6vw;
+            display: grid;
+            grid-template-columns: 1fr 420px;
+            gap: 48px;
+            align-items: center;
+            background: linear-gradient(135deg, rgba(0,0,0,0.03), rgba(0,0,0,0.02));
+            border-bottom: none;
+            position: relative;
+            overflow: hidden;
+        }
+
         .hero::before {
             content: '';
             position: absolute;
@@ -91,313 +147,465 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="%23000" opacity="0.05"/></svg>') repeat;
-            opacity: 0.1;
+            /* subtle texture reduced for softer look */
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="%23000" opacity="0.03"/></svg>') repeat;
+            opacity: 0.03;
+            background-size: 120px;
+            pointer-events: none;
         }
-        .hero-left h1{
-            font-size:3rem; /* larger for impact */
-            margin:0 0 20px;
-            color:var(--accent);
-            letter-spacing:-0.02em;
-            font-weight:800;
+
+        .hero-left h1 {
+            font-size: 3rem;
+            margin: 0 0 20px;
+            color: var(--accent);
+            letter-spacing: -0.02em;
+            font-weight: 800;
             text-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
-        .hero-left p{
-            color:var(--muted);
-            margin:0 0 30px;
-            font-size:1.1rem;
-            max-width:720px;
-            line-height:1.6;
+
+        .hero-left p {
+            color: var(--muted);
+            margin: 0 0 30px;
+            font-size: 1.1rem;
+            max-width: 720px;
+            line-height: 1.6;
         }
-        .hero-cta{display:flex;gap:16px;align-items:center}
-        .btn{
-            padding:16px 24px; /* larger buttons */
-            border-radius:12px;
-            text-decoration:none;
-            font-weight:700;
-            display:inline-flex;
-            gap:10px;
-            align-items:center;
-            font-size:1.05rem;
+
+        .hero-cta {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 16px 24px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-flex;
+            gap: 10px;
+            align-items: center;
+            font-size: 1.05rem;
             box-shadow: 0 4px 12px rgba(0,0,0,0.15);
             transition: all 0.3s ease;
         }
-        .btn-ghost{background:transparent;border:2px solid rgba(0,0,0,0.1);color:var(--accent)}
-        .btn-ghost:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
-        .btn-primary{background:var(--accent);color:#fff}
-        .btn-primary:hover{transform:translateY(-3px);box-shadow: 0 8px 20px rgba(0,0,0,0.2)}
 
-        /* hero card - make features more prominent */
-        .hero-card{
-            background:var(--card);
-            padding:24px;
-            border-radius:16px;
-            box-shadow: 0 12px 40px rgba(0,0,0,0.1);
-            border:1px solid rgba(0,0,0,0.05);
-            position:relative;
-            z-index:1;
+        .btn-ghost {
+            background: transparent;
+            border: 2px solid rgba(0,0,0,0.1);
+            color: var(--accent);
         }
-        .feature{
-            display:flex;
-            gap:16px;
-            align-items:flex-start;
-            margin-bottom:16px;
-            padding:12px;
-            border-radius:8px;
+
+        .btn-ghost:hover {
+            background: var(--accent);
+            color: #fff;
+            border-color: var(--accent);
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        .hero-card {
+            background: var(--card);
+            padding: 24px;
+            border-radius: 16px;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+            border: 1px solid rgba(0,0,0,0.05);
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-card .feature {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            margin-bottom: 16px;
+            padding: 12px;
+            border-radius: 8px;
             transition: background 0.3s ease;
         }
-        .feature:hover{background: rgba(0,0,0,0.02)}
-        .badge{
-            width:50px;
-            height:50px; /* larger badge */
-            border-radius:10px;
+
+        .hero-card .feature:hover {
+            background: rgba(0,0,0,0.02);
+        }
+
+        .badge {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
             background: linear-gradient(135deg, #f2f2f2, #e0e0e0);
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            font-weight:800;
-            color:var(--accent);
-            font-size:1.2rem;
-        }
-        .feature h4{margin:0;font-size:1.1rem;font-weight:600}
-        .feature p{margin:6px 0 0;color:var(--muted);font-size:0.95rem}
-
-        /* sections - enhance to show utility more clearly */
-        .section{
-            margin-top:40px; /* more spacing */
-            background:var(--card);
-            padding:64px 6vw; /* more padding */
-            border-radius:0;
-            box-shadow:0 12px 40px rgba(0,0,0,0.05);
-            border-top:2px solid rgba(0,0,0,0.03);
-            position:relative;
-        }
-        .section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 4px;
-            background: var(--accent);
-            border-radius: 2px;
-        }
-        .section h2{
-            margin:0 0 24px;
-            font-size:1.6rem;
-            color:var(--accent);
-            font-weight:700;
-            text-align:center;
-        }
-        .grid{display:grid;gap:24px}
-        .grid.cols-3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
-        .grid.cols-2{grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
-        .card{
-            background:linear-gradient(180deg,#fff,#fbfbfb);
-            padding:24px;
-            border-radius:16px;
-            border:1px solid rgba(0,0,0,0.03);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .card:hover{
-            transform: translateY(-4px);
-            box-shadow: 0 12px 30px rgba(0,0,0,0.1);
-        }
-        .num{
-            background:#111;
-            color:#fff;
-            width:48px;
-            height:48px;
-            border-radius:12px;
-            display:inline-flex;
-            align-items:center;
-            justify-content:center;
-            font-weight:800;
-            margin-bottom:16px;
-            font-size:1.2rem;
-        }
-        .muted{color:var(--muted)}
-
-        /* translator - enhance for prominence */
-        .translator{display:grid;grid-template-columns:1fr 380px;gap:32px;align-items:start}
-        .input-group{margin-bottom:16px}
-        label{display:block;margin-bottom:10px;font-weight:700;font-size:1.05rem}
-        textarea{
-            width:100%;
-            min-height:140px;
-            padding:16px;
-            border-radius:12px;
-            border:2px solid rgba(0,0,0,0.06);
-            resize:vertical;
-            font-size:1rem;
-            background:transparent;
-            transition: border-color 0.3s ease;
-        }
-        textarea:focus{border-color:var(--accent);outline:none}
-        .translate-btn{
-            width:100%;
-            padding:16px;
-            border-radius:12px;
-            border:0;
-            background:linear-gradient(135deg, var(--accent), #444);
-            color:#fff;
-            font-weight:700;
-            cursor:pointer;
-            font-size:1.1rem;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-            transition: all 0.3s ease;
-        }
-        .translate-btn:hover:not(:disabled){transform:translateY(-2px);box-shadow: 0 8px 20px rgba(0,0,0,0.3)}
-        .translate-btn:disabled{opacity:0.6;cursor:default}
-        .result{
-            background:linear-gradient(180deg,#fafafa,#fff);
-            padding:20px;
-            border-radius:12px;
-            border:1px solid rgba(0,0,0,0.04);
-            min-height:140px;
-            white-space:pre-wrap;
-            box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
-        }
-        .helper{font-size:0.9rem;color:var(--muted);margin-top:10px}
-
-        /* suggestions - make more prominent */
-        .suggestions{margin-top:20px}
-        .suggestions h4{margin:0 0 16px;font-size:1.1rem;color:var(--accent);font-weight:600}
-        .suggestion-list{display:flex;flex-direction:column;gap:10px}
-        .suggestion-item{
-            background:#f9f9f9;
-            padding:16px;
-            border-radius:10px;
-            border:1px solid rgba(0,0,0,0.03);
-            cursor:pointer;
-            transition:all 0.3s ease;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-        }
-        .suggestion-item:hover{
-            background:#e9e9ea;
-            border-color:var(--accent);
-            transform:translateY(-2px);
-            box-shadow: 0 6px 16px rgba(0,0,0,0.1);
-        }
-        .suggestion-text{font-weight:600;color:var(--text);font-size:1rem}
-        .suggestion-reason{font-size:0.9rem;color:var(--muted);margin-top:6px}
-
-        /* footer - make more elegant and tidy */
-        footer{
-            margin-top:60px;
-            background: linear-gradient(180deg, rgba(0,0,0,0.03), rgba(0,0,0,0.08));
-            border-top: 3px solid var(--accent);
-            padding: 60px 6vw 40px;
-            position: relative;
-        }
-        footer::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background: var(--accent);
-            border-radius: 2px;
-        }
-        .footer-content{
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr auto;
-            gap: 40px;
-            align-items: start;
-        }
-        .footer-brand{
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-        .footer-brand .logo{
-            width: 60px;
-            height: 60px;
-            border-radius: 12px;
-            background: linear-gradient(135deg, #fff, #f0f0f0);
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: var(--shadow);
-        }
-        .footer-brand h3{
+            font-weight: 800;
+            color: var(--accent);
             font-size: 1.2rem;
-            margin: 0;
-            color: var(--accent);
-            font-weight: 700;
-        }
-        .footer-brand p{
-            margin: 0;
-            color: var(--muted);
-            font-size: 0.9rem;
-            line-height: 1.5;
-        }
-        .footer-nav{
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-        .footer-nav h4{
-            margin: 0 0 8px;
-            font-size: 1rem;
-            color: var(--accent);
-            font-weight: 600;
-        }
-        .footer-links{
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-        .footer-links a{
-            color: var(--muted);
-            text-decoration: none;
-            font-weight: 500;
-            padding: 6px 0;
-            transition: color 0.3s ease;
-        }
-        .footer-links a:hover{
-            color: var(--accent);
-        }
-        .footer-bottom{
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(0,0,0,0.1);
-            text-align: center;
-            color: var(--muted);
-            font-size: 0.9rem;
-        }
-        .footer-bottom p{
-            margin: 4px 0;
-        }
-        .footer-bottom a{
-            color: var(--accent);
-            font-weight: 600;
-            text-decoration: none;
-        }
-        .footer-bottom a:hover{
-            text-decoration: underline;
         }
 
-        /* responsive footer */
-        @media (max-width: 768px) {
-            .footer-content {
+        .feature h4 {
+            margin: 0;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .feature p {
+            margin: 6px 0 0;
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        /* Sections */
+        .section {
+            margin-top: 40px;
+            background: linear-gradient(180deg,#ffffff,#fbfbfb);
+            padding: 64px 6vw;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(16,24,40,0.03); /* very soft shadow */
+            border-top: none;
+            position: relative;
+        }
+
+        .section::before { display: none; }
+
+        .section h2 {
+            margin: 0 0 24px;
+            font-size: 1.6rem;
+            color: var(--accent);
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .inner {
+            max-width: var(--container);
+            margin: 0 auto;
+        }
+
+        .grid {
+            display: grid;
+            gap: 24px;
+        }
+
+        .grid.cols-3 {
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        }
+
+        .grid.cols-2 {
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        }
+
+        .card {
+            background: linear-gradient(180deg, #fff, #fbfbfb);
+            padding: 24px;
+            border-radius: 16px;
+            border: 1px solid rgba(0,0,0,0.03);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+        }
+
+        .num {
+            background: #111;
+            color: #fff;
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            margin-bottom: 16px;
+            font-size: 1.2rem;
+        }
+
+        .muted {
+            color: var(--muted);
+        }
+
+        /* Translator */
+        .translator {
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 32px;
+            align-items: start;
+        }
+
+        .input-group {
+            margin-bottom: 16px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 700;
+            font-size: 1.05rem;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 140px;
+            padding: 16px;
+            border-radius: 12px;
+            border: 2px solid rgba(0,0,0,0.06);
+            resize: vertical;
+            font-size: 1rem;
+            background: transparent;
+            transition: border-color 0.3s ease;
+        }
+
+        textarea:focus {
+            border-color: var(--accent);
+            outline: none;
+        }
+
+        .translate-btn {
+            width: 100%;
+            padding: 16px;
+            border-radius: 12px;
+            border: 0;
+            background: linear-gradient(135deg, var(--accent), #444);
+            color: #fff;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .translate-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+
+        .translate-btn:disabled {
+            opacity: 0.6;
+            cursor: default;
+        }
+
+        .result {
+            background: linear-gradient(180deg, #fafafa, #fff);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid rgba(0,0,0,0.04);
+            min-height: 140px;
+            white-space: pre-wrap;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        .helper {
+            font-size: 0.9rem;
+            color: var(--muted);
+            margin-top: 10px;
+        }
+
+        .examples {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .chip {
+            padding: 8px 12px;
+            border-radius: 999px;
+            background: #f3f3f4;
+            border: 1px solid rgba(0,0,0,0.03);
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--muted);
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .chip:hover {
+            background: #e9e9ea;
+            color: var(--accent);
+        }
+
+        /* Suggestions */
+        .suggestions {
+            margin-top: 20px;
+        }
+
+        .suggestions h4 {
+            margin: 0 0 16px;
+            font-size: 1.1rem;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .suggestion-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .suggestion-item {
+            background: #f9f9f9;
+            padding: 16px;
+            border-radius: 10px;
+            border: 1px solid rgba(0,0,0,0.03);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .suggestion-item:hover {
+            background: #e9e9ea;
+            border-color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+        }
+
+        .suggestion-text {
+            font-weight: 600;
+            color: var(--text);
+            font-size: 1rem;
+        }
+
+        .suggestion-reason {
+            font-size: 0.9rem;
+            color: var(--muted);
+            margin-top: 6px;
+        }
+
+        /* Footer */
+        footer {
+            width: 100%;
+            margin: 48px 0;
+            background: #0b0b0b;
+            color: #fff;
+            border-radius: 0;
+            padding: 12px 6vw;
+            box-shadow: 0 8px 30px rgba(2,6,23,0.45);
+            display: block;
+        }
+
+        .footer-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+            font-size: 0.95rem;
+            line-height: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-inner .copyright {
+            opacity: 0.9;
+            font-weight: 600;
+        }
+
+        .footer-inner .social {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .footer-inner .icon {
+            display: inline-flex;
+            width: 36px;
+            height: 36px;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            background: rgba(255,255,255,0.04);
+            color: var(--muted);
+            text-decoration: none;
+            transition: all 0.18s ease;
+        }
+
+        .footer-inner .icon svg {
+            width: 18px;
+            height: 18px;
+            display: block;
+        }
+
+        .footer-inner .icon:hover {
+            background: rgba(255,255,255,0.08);
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        /* Animations */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .inview {
+            opacity: 1;
+            transform: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 980px) {
+            .hero {
                 grid-template-columns: 1fr;
-                gap: 30px;
+                padding: 64px 6vw;
             }
-            .footer-nav {
-                flex-direction: row;
-                justify-content: space-around;
-            }
-            .footer-links {
-                align-items: center;
+            .translator {
+                grid-template-columns: 1fr;
             }
         }
+
+        @media (max-width: 640px) {
+            footer {
+                margin: 24px 0;
+                padding: 12px 6vw;
+            }
+            .footer-inner {
+                flex-direction: column;
+                gap: 8px;
+            }
+            .hero-left h1 {
+                font-size: 1.6rem;
+            }
+            .hero-left p {
+                font-size: 0.95rem;
+            }
+        }
+
+        /* transparent / minimal scrollbar */
+        /* WebKit (Chrome, Edge, Safari) */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+            background: transparent;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(0,0,0,0.06);
+            border-radius: 999px;
+            border: 2px solid transparent;
+            background-clip: padding-box;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(0,0,0,0.10);
+        }
+
+        /* Firefox */
+        * {
+            scrollbar-width: thin;
+            scrollbar-color: rgba(0,0,0,0.06) transparent;
+        }
+
+        /* If you want the scrollbar fully invisible (still scrollable), uncomment:
+        ::-webkit-scrollbar-thumb { background: transparent; }
+        * { scrollbar-width: none; } 
+        */
     </style>
 </head>
 <body>
@@ -406,12 +614,12 @@
             <a class="brand" href="#">
                 <div>
                     <h3>Penerjemah Bahasa Wanita</h3>
-                    <div style="font-size:12px;color:var(--muted)">Memahami maksud tersirat dengan AI</div>
+                    <div>Memahami maksud tersirat dengan AI</div>
                 </div>
             </a>
             <nav>
                 <a href="#about">Tentang</a>
-                <a href="#how">Cara</a>
+                <a href="#how">Cara Kerja</a>
                 <a href="#tips">Tips</a>
                 <a href="#translator">Translator</a>
                 <a class="cta-primary" href="#translator">Coba Sekarang</a>
@@ -419,7 +627,7 @@
         </header>
 
         <main>
-            <!-- hero -->
+            <!-- Hero -->
             <section class="hero fade-up" id="home">
                 <div class="hero-left">
                     <h1>Mengerti Ucapan, Membangun Koneksi</h1>
@@ -431,17 +639,17 @@
                 </div>
 
                 <aside class="hero-card hero-right">
-                    <div style="display:flex;flex-direction:column;gap:12px">
-                        <div style="display:flex;align-items:center;justify-content:space-between">
-                            <strong style="font-size:1rem">Hasil Cepat & Aman</strong>
-                            <span class="muted" style="font-size:0.9rem">Privasi terjaga</span>
+                    <div>
+                        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+                            <strong>Hasil Cepat & Aman</strong>
+                            <span class="muted">Privasi terjaga</span>
                         </div>
 
                         <div class="feature">
                             <div class="badge">A</div>
                             <div>
                                 <h4>Analisis Emosi</h4>
-                                <p class="muted">Mengidentifikasi emosi dan nada bicara.</p>
+                                <p>Mengidentifikasi emosi dan nada bicara.</p>
                             </div>
                         </div>
 
@@ -449,7 +657,7 @@
                             <div class="badge">C</div>
                             <div>
                                 <h4>Rekomendasi Respon</h4>
-                                <p class="muted">Saran balasan yang sopan dan jelas.</p>
+                                <p>Saran balasan yang sopan dan jelas.</p>
                             </div>
                         </div>
 
@@ -457,16 +665,16 @@
                             <div class="badge">P</div>
                             <div>
                                 <h4>Privasi</h4>
-                                <p class="muted">Data tetap lokal / sesuai kebijakan Anda.</p>
+                                <p>Data tetap lokal / sesuai kebijakan Anda.</p>
                             </div>
                         </div>
                     </div>
                 </aside>
             </section>
 
-            <!-- about -->
+            <!-- About -->
             <section id="about" class="section fade-up">
-                <div class="inner"> <!-- new wrapper to constrain inner content -->
+                <div class="inner">
                     <h2>Tentang Platform</h2>
                     <div style="display:flex;gap:24px;align-items:center;flex-wrap:wrap">
                         <div style="flex:1;min-width:320px">
@@ -474,8 +682,8 @@
                             <p class="muted">Cocok untuk belajar komunikasi, meningkatkan hubungan pribadi, atau sebagai alat bantu untuk HR dan customer support.</p>
                         </div>
                         <div style="width:300px;background:linear-gradient(180deg,#fff,#fafafa);padding:14px;border-radius:12px;border:1px solid rgba(0,0,0,0.03)">
-                            <strong style="display:block;margin-bottom:8px">Keunggulan</strong>
-                            <ul style="color:var(--muted);margin:0;padding-left:18px;line-height:1.6">
+                            <strong>Keunggulan</strong>
+                            <ul style="color:var(--muted);margin:8px 0 0;padding-left:18px;line-height:1.6">
                                 <li>Hasil ringkas & mudah dipahami</li>
                                 <li>Gaya bahasa sopan dan konstruktif</li>
                                 <li>Interaksi cepat, response-aware</li>
@@ -485,59 +693,66 @@
                 </div>
             </section>
 
-            <!-- how to use -->
-            <section id="how" class="section fade-up" style="margin-top:20px">
+            <!-- How to Use -->
+            <section id="how" class="section fade-up">
                 <div class="inner">
                     <h2>Cara Menggunakan</h2>
-                    <div class="grid cols-3" style="margin-top:18px">
+                    <div class="grid cols-3">
                         <div class="card">
                             <div class="num">1</div>
-                            <h3 style="margin:8px 0">Masukkan Kalimat</h3>
+                            <h3>Masukkan Kalimat</h3>
                             <p class="muted">Ketik atau paste ucapan yang ingin dipahami.</p>
                         </div>
                         <div class="card">
                             <div class="num">2</div>
-                            <h3 style="margin:8px 0">Proses AI</h3>
+                            <h3>Proses AI</h3>
                             <p class="muted">Tekan terjemahkan, AI menganalisis nada, emosi, dan konteks.</p>
                         </div>
                         <div class="card">
                             <div class="num">3</div>
-                            <h3 style="margin:8px 0">Terima Insight</h3>
+                            <h3>Terima Insight</h3>
                             <p class="muted">Dapatkan terjemahan, emosi, dan rekomendasi respon.</p>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- tips -->
-            <section id="tips" class="section fade-up" style="margin-top:20px">
+            <!-- Tips -->
+            <section id="tips" class="section fade-up">
                 <div class="inner">
                     <h2>Tips Menghadapi Wanita</h2>
-                    <div class="grid cols-3" style="margin-top:18px">
-                        <div class="card"><h4 style="margin:0 0 8px">Dengarkan</h4><p class="muted">Perhatikan nada dan konteks, bukan hanya kata.</p></div>
-                        <div class="card"><h4 style="margin:0 0 8px">Tanya dengan Lembut</h4><p class="muted">Gunakan pertanyaan klarifikasi bila ragu.</p></div>
-                        <div class="card"><h4 style="margin:0 0 8px">Berempati</h4><p class="muted">Validasi perasaan sebelum memberi solusi.</p></div>
+                    <div class="grid cols-3">
+                        <div class="card">
+                            <h4>Dengarkan</h4>
+                            <p class="muted">Perhatikan nada dan konteks, bukan hanya kata.</p>
+                        </div>
+                        <div class="card">
+                            <h4>Tanya dengan Lembut</h4>
+                            <p class="muted">Gunakan pertanyaan klarifikasi bila ragu.</p>
+                        </div>
+                        <div class="card">
+                            <h4>Berempati</h4>
+                            <p class="muted">Validasi perasaan sebelum memberi solusi.</p>
+                        </div>
                     </div>
                 </div>
             </section>
 
-            <!-- translator -->
-            <section id="translator" class="section fade-up" style="margin-top:20px">
+            <!-- Translator -->
+            <section id="translator" class="section fade-up">
                 <div class="inner">
                     <h2>AI Translator</h2>
-                    <div class="translator" style="margin-top:18px">
+                    <div class="translator">
                         <div>
                             <div class="input-group">
                                 <label for="inputText">Masukkan ucapan / pesan</label>
                                 <textarea id="inputText" placeholder="Contoh: 'Terserah kamu deh...'"></textarea>
                             </div>
 
-                            <div style="display:flex;gap:12px;align-items:center;margin-bottom:12px;flex-wrap:wrap">
-                                <div class="examples">
-                                    <div class="chip" onclick="setExample('Terserah kamu deh...')">Terserah kamu deh...</div>
-                                    <div class="chip" onclick="setExample('Gak apa-apa kok')">Gak apa-apa kok</div>
-                                    <div class="chip" onclick="setExample('Kamu pasti lupa ya...')">Kamu pasti lupa ya...</div>
-                                </div>
+                            <div class="examples">
+                                <div class="chip" onclick="setExample('Terserah kamu deh...')">Terserah kamu deh...</div>
+                                <div class="chip" onclick="setExample('Gak apa-apa kok')">Gak apa-apa kok</div>
+                                <div class="chip" onclick="setExample('Kamu pasti lupa ya...')">Kamu pasti lupa ya...</div>
                             </div>
 
                             <button id="translateBtn" class="translate-btn" onclick="translateText()">
@@ -555,10 +770,10 @@
                                 <div id="suggestionList" class="suggestion-list"></div>
                             </div>
                             <div style="display:flex;gap:8px;margin-top:12px">
-                                <button id="copyBtn" class="chip" onclick="copyResult()" style="background:#111;color:#fff">Salin</button>
+                                <button id="copyBtn" class="chip" onclick="copyResult()">Salin</button>
                                 <button class="chip" onclick="clearAll()">Bersihkan</button>
                             </div>
-                            <div id="msg" class="helper" style="margin-top:12px;color:var(--muted)"></div>
+                            <div id="msg" class="helper"></div>
                         </aside>
                     </div>
                 </div>
@@ -566,43 +781,34 @@
         </main>
 
         <footer>
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <h3>Penerjemah Bahasa Wanita</h3>
-                    <p>Alat AI inovatif untuk memahami komunikasi wanita dengan lebih baik, membangun empati dan koneksi yang lebih kuat.</p>
+            <div class="footer-inner" role="contentinfo">
+                <div class="copyright">© 2025 <strong>Penerjemah Bahasa Wanita</strong></div>
+
+                <div class="social" aria-label="Social links">
+                    <a class="icon" href="https://github.com/fikrisn" target="_blank" aria-label="GitHub">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 .5a11.5 11.5 0 0 0-3.64 22.43c.58.11.79-.25.79-.56v-2.02c-3.22.7-3.9-1.55-3.9-1.55-.53-1.36-1.3-1.72-1.3-1.72-1.06-.73.08-.72.08-.72 1.17.08 1.79 1.2 1.79 1.2 1.04 1.78 2.73 1.27 3.4.97.11-.75.41-1.27.75-1.56-2.57-.29-5.27-1.29-5.27-5.74 0-1.27.45-2.31 1.18-3.12-.12-.29-.51-1.46.11-3.05 0 0 .97-.31 3.18 1.19a11.06 11.06 0 0 1 5.79 0c2.2-1.5 3.17-1.19 3.17-1.19.62 1.59.23 2.76.11 3.05.73.81 1.18 1.85 1.18 3.12 0 4.46-2.71 5.44-5.29 5.73.42.36.8 1.08.8 2.18v3.23c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5z"/>
+                        </svg>
+                    </a>
+
+                    <a class="icon" href="mailto:contact@example.com" aria-label="Email">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 8.5v7A2.5 2.5 0 0 0 5.5 18h13a2.5 2.5 0 0 0 2.5-2.5v-7" />
+                            <path d="M21 6.5a2.5 2.5 0 0 0-2.5-2.5h-13A2.5 2.5 0 0 0 3 6.5" />
+                            <path d="M3 8.5l9 6 9-6" />
+                        </svg>
+                    </a>
                 </div>
-                <div class="footer-nav">
-                    <div>
-                        <h4>Navigasi</h4>
-                        <div class="footer-links">
-                            <a href="#about">Tentang</a>
-                            <a href="#how">Cara Kerja</a>
-                            <a href="#tips">Tips</a>
-                            <a href="#translator">Translator</a>
-                        </div>
-                    </div>
-                    <div>
-                        <h4>Tautan</h4>
-                        <div class="footer-links">
-                            <a href="https://github.com/fikrisn" target="_blank">GitHub</a>
-                            <a href="mailto:contact@example.com">Kontak</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>© 2025 <strong>Penerjemah Bahasa Wanita</strong> — Dibuat dengan ❤️ oleh <a href="https://github.com/fikrisn" target="_blank">FkrDev</a></p>
-                <p>Privasi diutamakan · Gunakan dengan bijak untuk komunikasi yang lebih baik</p>
             </div>
         </footer>
     </div>
 
     <script>
-        // simple in-view animation
+        // In-view animation
         function inView() {
-            document.querySelectorAll('.fade-up').forEach(el=>{
+            document.querySelectorAll('.fade-up').forEach(el => {
                 const r = el.getBoundingClientRect();
-                if(r.top < (window.innerHeight || document.documentElement.clientHeight) - 60){
+                if (r.top < (window.innerHeight || document.documentElement.clientHeight) - 60) {
                     el.classList.add('inview');
                 }
             });
@@ -610,68 +816,74 @@
         window.addEventListener('scroll', inView);
         window.addEventListener('load', inView);
 
-        /* Smooth scrolling with header offset for anchor clicks */
-        (function(){
+        // Smooth scrolling with header offset
+        (function() {
             const headerHeight = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-height')) || 76;
-            document.querySelectorAll('a[href^="#"]').forEach(link=>{
-                link.addEventListener('click', function(e){
+            document.querySelectorAll('a[href^="#"]').forEach(link => {
+                link.addEventListener('click', function(e) {
                     const href = this.getAttribute('href');
-                    if(!href || href === '#') return;
+                    if (!href || href === '#') return;
                     const target = document.querySelector(href);
-                    if(!target) return;
+                    if (!target) return;
                     e.preventDefault();
                     const rect = target.getBoundingClientRect();
-                    const top = rect.top + window.scrollY - headerHeight - 12; // small gap
+                    const top = rect.top + window.scrollY - headerHeight - 12;
                     window.scrollTo({ top, behavior: 'smooth' });
                 });
             });
         })();
 
-        function setExample(text){
+        // Set example text
+        function setExample(text) {
             const el = document.getElementById('inputText');
             el.value = text;
             el.focus();
         }
 
-        function showMessage(text, timeout=3000){
+        // Show message
+        function showMessage(text, timeout = 3000) {
             const msg = document.getElementById('msg');
             msg.textContent = text;
-            if(timeout>0) setTimeout(()=>{ msg.textContent=''; }, timeout);
+            if (timeout > 0) setTimeout(() => { msg.textContent = ''; }, timeout);
         }
 
-        function clearAll(){
-            document.getElementById('inputText').value='';
-            document.getElementById('outputText').textContent='Hasil akan muncul di sini setelah proses.';
+        // Clear all
+        function clearAll() {
+            document.getElementById('inputText').value = '';
+            document.getElementById('outputText').textContent = 'Hasil akan muncul di sini setelah proses.';
             document.getElementById('suggestions').style.display = 'none';
             document.getElementById('suggestionList').innerHTML = '';
             showMessage('Dibersihkan');
         }
 
-        async function translateText(){
+        // Translate text
+        async function translateText() {
             const btn = document.getElementById('translateBtn');
             const input = document.getElementById('inputText').value.trim();
             const out = document.getElementById('outputText');
             const suggestionsDiv = document.getElementById('suggestions');
             const suggestionList = document.getElementById('suggestionList');
-            if(!input){ showMessage('Masukkan teks terlebih dahulu'); return; }
-            btn.disabled=true; const originalText = btn.textContent; btn.textContent='Memproses...';
+            if (!input) { showMessage('Masukkan teks terlebih dahulu'); return; }
+            btn.disabled = true;
+            const originalText = btn.textContent;
+            btn.textContent = 'Memproses...';
             out.textContent = 'Memproses dengan AI...';
             suggestionsDiv.style.display = 'none';
             suggestionList.innerHTML = '';
-            try{
+            try {
                 const resp = await fetch('/api/translate', {
-                    method:'POST',
-                    headers:{'Content-Type':'application/json'},
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ text: input })
                 });
-                if(!resp.ok){
-                    const txt = await resp.text().catch(()=>null);
-                    throw new Error(`HTTP ${resp.status} - ${txt||resp.statusText}`);
+                if (!resp.ok) {
+                    const txt = await resp.text().catch(() => null);
+                    throw new Error(`HTTP ${resp.status} - ${txt || resp.statusText}`);
                 }
                 const data = await resp.json();
-                if(data && data.translation){
+                if (data && data.translation) {
                     out.textContent = data.translation;
-                    if(data.suggestions && Array.isArray(data.suggestions)){
+                    if (data.suggestions && Array.isArray(data.suggestions)) {
                         suggestionsDiv.style.display = 'block';
                         suggestionList.innerHTML = data.suggestions.map(s => `
                             <div class="suggestion-item" onclick="copySuggestion('${s.text.replace(/'/g, "\\'")}')">
@@ -683,29 +895,32 @@
                     showMessage('Terjemahan berhasil', 2500);
                 } else {
                     out.textContent = 'Respons server tidak sesuai.';
-                    showMessage('Gagal: format respons tidak valid',4000);
+                    showMessage('Gagal: format respons tidak valid', 4000);
                 }
-            }catch(err){
+            } catch (err) {
                 out.textContent = '';
-                showMessage('Error: '+err.message, 6000);
-            }finally{
-                btn.disabled=false; btn.textContent=originalText;
+                showMessage('Error: ' + err.message, 6000);
+            } finally {
+                btn.disabled = false;
+                btn.textContent = originalText;
             }
         }
 
-        function copySuggestion(text){
-            navigator.clipboard.writeText(text).then(()=> showMessage('Balasan disalin ke clipboard',2000)).catch(()=> showMessage('Gagal menyalin',2000));
+        // Copy suggestion
+        function copySuggestion(text) {
+            navigator.clipboard.writeText(text).then(() => showMessage('Balasan disalin ke clipboard', 2000)).catch(() => showMessage('Gagal menyalin', 2000));
         }
 
-        function copyResult(){
+        // Copy result
+        function copyResult() {
             const out = document.getElementById('outputText').textContent;
-            if(!out) { showMessage('Tidak ada hasil untuk disalin'); return; }
-            navigator.clipboard.writeText(out).then(()=> showMessage('Hasil disalin ke clipboard',2000)).catch(()=> showMessage('Gagal menyalin',2000));
+            if (!out) { showMessage('Tidak ada hasil untuk disalin'); return; }
+            navigator.clipboard.writeText(out).then(() => showMessage('Hasil disalin ke clipboard', 2000)).catch(() => showMessage('Gagal menyalin', 2000));
         }
 
-        // keyboard shortcut
-        document.getElementById('inputText').addEventListener('keydown', function(e){
-            if(e.ctrlKey && e.key === 'Enter'){ e.preventDefault(); translateText(); }
+        // Keyboard shortcut
+        document.getElementById('inputText').addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.key === 'Enter') { e.preventDefault(); translateText(); }
         });
     </script>
 </body>
