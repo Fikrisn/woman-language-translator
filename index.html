@@ -1,612 +1,342 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Penerjemah Bahasa Wanita - Memahami Komunikasi dengan Lebih Baik</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Penerjemah Bahasa Wanita — Profesional & Elegan</title>
+    <meta name="description" content="Penerjemah Bahasa Wanita — alat AI untuk memahami ucapan tersirat, meningkatkan empati dan komunikasi." />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        :root{
+            --bg:#f7f7f8;
+            --card:#ffffff;
+            --text:#111216;
+            --muted:#6b7280;
+            --accent:#222; /* monochrome accent */
+            --glass: rgba(255,255,255,0.6);
+            --shadow: 0 8px 30px rgba(16,24,40,0.08);
+            --radius:14px;
+            --container:1100px;
         }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
-            min-height: 100vh;
-            color: #333;
-            line-height: 1.6;
+        *{box-sizing:border-box}
+        html,body{height:100%}
+        body{
+            font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+            background:linear-gradient(180deg,var(--bg),#efefef);
+            color:var(--text);
+            margin:0;
+            -webkit-font-smoothing:antialiased;
+            -moz-osx-font-smoothing:grayscale;
+            line-height:1.5;
         }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
+        .wrap{max-width:var(--container);margin:32px auto;padding:24px}
+        /* header */
+        header{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:28px}
+        .brand{display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--text)}
+        .logo{
+            width:56px;height:56px;border-radius:10px;background:linear-gradient(180deg,#fff,#f2f2f2);
+            display:flex;align-items:center;justify-content:center;font-weight:800;color:var(--accent);box-shadow:var(--shadow);
         }
-
-        /* Hero Section */
-        .hero {
-            text-align: center;
-            color: #000;
-            padding: 100px 20px;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 20px;
-            margin-bottom: 60px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        .brand h3{font-size:1.05rem;margin:0}
+        nav{display:flex;gap:18px;align-items:center}
+        nav a{color:var(--muted);text-decoration:none;font-weight:600;padding:8px 12px;border-radius:10px}
+        nav a:hover{color:var(--accent);background:rgba(0,0,0,0.03)}
+        .cta-primary{background:var(--accent);color:#fff;padding:10px 16px;border-radius:10px;text-decoration:none;font-weight:600}
+        .cta-primary:hover{opacity:0.95;transform:translateY(-2px)}
+        /* hero */
+        .hero{
+            background: linear-gradient(135deg, rgba(0,0,0,0.03), rgba(0,0,0,0.02));
+            border-radius:var(--radius);
+            padding:64px;
+            display:grid;grid-template-columns:1fr 420px;gap:36px;align-items:center;box-shadow:var(--shadow);
         }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            font-weight: 700;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        .hero-left h1{font-size:2.4rem;margin:0 0 14px;color:var(--accent);letter-spacing:-0.02em}
+        .hero-left p{color:var(--muted);margin:0 0 22px;font-size:1rem;max-width:720px}
+        .hero-cta{display:flex;gap:12px;align-items:center}
+        .btn{padding:12px 18px;border-radius:10px;text-decoration:none;font-weight:700;display:inline-flex;gap:10px;align-items:center}
+        .btn-ghost{background:transparent;border:1px solid rgba(0,0,0,0.06);color:var(--accent)}
+        .btn-primary{background:var(--accent);color:#fff}
+        /* quick features on hero right */
+        .hero-card{background:var(--card);padding:20px;border-radius:12px;box-shadow:var(--shadow);border:1px solid rgba(0,0,0,0.03)}
+        .feature{display:flex;gap:12px;align-items:flex-start;margin-bottom:12px}
+        .badge{width:44px;height:44px;border-radius:8px;background:#f2f2f2;display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--accent)}
+        .feature h4{margin:0;font-size:1rem}
+        .feature p{margin:6px 0 0;color:var(--muted);font-size:0.95rem}
+        /* sections */
+        .section{margin-top:28px;background:var(--card);padding:34px;border-radius:12px;box-shadow:var(--shadow);border:1px solid rgba(0,0,0,0.03)}
+        .section h2{margin:0 0 18px;font-size:1.4rem;color:var(--accent)}
+        .grid{display:grid;gap:18px}
+        .grid.cols-3{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+        .grid.cols-2{grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
+        .card{background:linear-gradient(180deg,#fff,#fbfbfb);padding:20px;border-radius:12px;border:1px solid rgba(0,0,0,0.03)}
+        .num{background:#111;color:#fff;width:44px;height:44px;border-radius:10px;display:inline-flex;align-items:center;justify-content:center;font-weight:700;margin-bottom:12px}
+        .muted{color:var(--muted)}
+        /* translator */
+        .translator{display:grid;grid-template-columns:1fr 360px;gap:24px;align-items:start}
+        .input-group{margin-bottom:14px}
+        label{display:block;margin-bottom:8px;font-weight:700}
+        textarea{width:100%;min-height:120px;padding:14px;border-radius:10px;border:1px solid rgba(0,0,0,0.06);resize:vertical;font-size:0.95rem;background:transparent}
+        .translate-btn{width:100%;padding:14px;border-radius:10px;border:0;background:var(--accent);color:#fff;font-weight:700;cursor:pointer}
+        .translate-btn:disabled{opacity:0.6;cursor:default}
+        .result{background:linear-gradient(180deg,#fafafa,#fff);padding:16px;border-radius:10px;border:1px solid rgba(0,0,0,0.04);min-height:120px;white-space:pre-wrap}
+        .helper{font-size:0.9rem;color:var(--muted);margin-top:8px}
+        .examples{display:flex;flex-wrap:wrap;gap:8px}
+        .chip{padding:8px 12px;border-radius:999px;background:#f3f3f4;border:1px solid rgba(0,0,0,0.03);cursor:pointer;font-weight:600;color:var(--muted)}
+        .chip:hover{background:#e9e9ea;color:var(--accent)}
+        /* footer */
+        footer{margin-top:26px;text-align:center;color:var(--muted);font-size:0.95rem}
+        footer a{color:var(--accent);font-weight:700;text-decoration:none}
+        /* responsive */
+        @media (max-width:980px){
+            .hero{grid-template-columns:1fr; padding:36px}
+            .translator{grid-template-columns:1fr}
+            .hero-right{order:2}
         }
-
-        .hero p {
-            font-size: 1.4rem;
-            opacity: 0.8;
-            max-width: 700px;
-            margin: 0 auto 30px;
+        @media (max-width:540px){
+            .wrap{padding:16px}
+            .hero-left h1{font-size:1.6rem}
+            .hero-left p{font-size:0.95rem}
         }
-
-        .cta-btn {
-            display: inline-block;
-            background: linear-gradient(135deg, #333, #666);
-            color: white;
-            padding: 18px 40px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            margin-top: 20px;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-
-        .cta-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-        }
-
-        /* About Section */
-        .about-section {
-            background: rgba(255,255,255,0.95);
-            border-radius: 20px;
-            padding: 60px 40px;
-            margin-bottom: 60px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-            backdrop-filter: blur(10px);
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            margin-bottom: 30px;
-            color: #000;
-            text-align: center;
-            font-weight: 700;
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            align-items: center;
-        }
-
-        .about-text {
-            font-size: 1.1rem;
-            line-height: 1.8;
-        }
-
-        .about-image {
-            text-align: center;
-        }
-
-        .about-image img {
-            width: 100%;
-            max-width: 400px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-
-        /* How to Use Section */
-        .how-to-section {
-            background: rgba(0,0,0,0.05);
-            border-radius: 20px;
-            padding: 60px 40px;
-            margin-bottom: 60px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-        }
-
-        .steps-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-        }
-
-        .step-item {
-            background: white;
-            padding: 30px 20px;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-        }
-
-        .step-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-        }
-
-        .step-number {
-            font-size: 3rem;
-            color: #666;
-            margin-bottom: 15px;
-            font-weight: 700;
-        }
-
-        .step-title {
-            font-size: 1.3rem;
-            margin-bottom: 15px;
-            font-weight: 600;
-        }
-
-        .step-description {
-            font-size: 1rem;
-            color: #555;
-        }
-
-        /* Tips Section */
-        .tips-section {
-            background: rgba(255,255,255,0.95);
-            border-radius: 20px;
-            padding: 60px 40px;
-            margin-bottom: 60px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-        }
-
-        .tips-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .tip-item {
-            background: #f9f9f9;
-            padding: 25px;
-            border-radius: 15px;
-            border-left: 5px solid #333;
-            transition: all 0.3s ease;
-        }
-
-        .tip-item:hover {
-            background: #e0e0e0;
-            transform: translateY(-3px);
-        }
-
-        .tip-title {
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-            font-weight: 600;
-        }
-
-        .tip-description {
-            font-size: 1rem;
-            color: #555;
-            line-height: 1.6;
-        }
-
-        /* Translator Section */
-        .translator-section {
-            background: white;
-            border-radius: 20px;
-            padding: 60px 40px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-            backdrop-filter: blur(10px);
-        }
-
-        .input-group {
-            margin-bottom: 25px;
-        }
-
-        .input-group label {
-            display: block;
-            margin-bottom: 10px;
-            font-weight: 600;
-            color: #333;
-            font-size: 1.1rem;
-        }
-
-        textarea {
-            width: 100%;
-            padding: 18px;
-            border: 2px solid #ddd;
-            border-radius: 12px;
-            font-size: 1rem;
-            resize: vertical;
-            transition: all 0.3s ease;
-            font-family: inherit;
-            background: #fafafa;
-        }
-
-        textarea:focus {
-            outline: none;
-            border-color: #333;
-            box-shadow: 0 0 0 3px rgba(0,0,0,0.1);
-            background: white;
-        }
-
-        .translate-btn {
-            width: 100%;
-            background: linear-gradient(135deg, #333, #666);
-            color: white;
-            border: none;
-            padding: 18px 30px;
-            border-radius: 12px;
-            font-size: 1.2rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-
-        .translate-btn:hover:not(:disabled) {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-        }
-
-        .translate-btn:disabled {
-            background: #ccc;
-            cursor: not-allowed;
-            box-shadow: none;
-        }
-
-        .spinner {
-            width: 20px;
-            height: 20px;
-            border: 2px solid #ffffff;
-            border-top: 2px solid transparent;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .quick-examples {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 25px;
-        }
-
-        .quick-example-btn {
-            background: #f0f0f0;
-            border: 2px solid #ddd;
-            border-radius: 25px;
-            padding: 10px 20px;
-            font-size: 0.95rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            color: #333;
-        }
-
-        .quick-example-btn:hover {
-            background: #333;
-            color: white;
-            border-color: #333;
-        }
-
-        .error-message {
-            background: #ffe6e6;
-            color: #d63031;
-            padding: 15px;
-            border-radius: 8px;
-            margin-top: 15px;
-            display: none;
-            border-left: 4px solid #d63031;
-        }
-
-        .success-message {
-            background: #e6ffe6;
-            color: #00b894;
-            padding: 15px;
-            border-radius: 8px;
-            margin-top: 15px;
-            display: none;
-            border-left: 4px solid #00b894;
-        }
-
-        .footer {
-            text-align: center;
-            color: #666;
-            margin-top: 60px;
-            padding: 30px 20px;
-            background: rgba(0,0,0,0.05);
-            border-radius: 20px;
-        }
-
-        .footer a {
-            color: #333;
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .footer a:hover {
-            text-decoration: underline;
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.8rem;
-            }
-            
-            .hero p {
-                font-size: 1.2rem;
-            }
-            
-            .about-content {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-            
-            .steps-grid,
-            .tips-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .about-section,
-            .how-to-section,
-            .tips-section,
-            .translator-section {
-                padding: 30px 20px;
-            }
-        }
+        /* subtle entrance */
+        .fade-up{opacity:0;transform:translateY(10px);transition:opacity .6s ease,transform .6s ease}
+        .inview{opacity:1;transform:none}
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Hero Section -->
-        <section class="hero">
-            <h1>🌸 Penerjemah Bahasa Wanita</h1>
-            <p>Memahami komunikasi wanita dengan lebih baik melalui AI canggih. Terjemahkan ucapan tersirat menjadi makna yang sebenarnya untuk komunikasi yang lebih efektif.</p>
-            <a href="#translator" class="cta-btn">Mulai Terjemahkan Sekarang</a>
-        </section>
+    <div class="wrap">
+        <header>
+            <a class="brand" href="#">
+                <div class="logo">WB</div>
+                <div>
+                    <h3>Penerjemah Bahasa Wanita</h3>
+                    <div style="font-size:12px;color:var(--muted)">Memahami maksud tersirat dengan AI</div>
+                </div>
+            </a>
+            <nav>
+                <a href="#about">Tentang</a>
+                <a href="#how">Cara</a>
+                <a href="#tips">Tips</a>
+                <a href="#translator">Translator</a>
+                <a class="cta-primary" href="#translator">Coba Sekarang</a>
+            </nav>
+        </header>
 
-        <!-- About Section -->
-        <section class="about-section">
-            <h2 class="section-title">Tentang Web Ini</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p><strong>Penerjemah Bahasa Wanita</strong> adalah alat AI inovatif yang membantu Anda memahami komunikasi wanita yang sering kali tidak langsung atau tersirat. Banyak wanita menggunakan bahasa yang halus, sarkastis, atau penuh nuansa emosional yang sulit dipahami oleh pria.</p>
-                    <p>Web ini menggunakan teknologi AI dari Google Gemini untuk menganalisis ucapan dan memberikan terjemahan yang jelas, sopan, dan konstruktif. Tujuannya adalah meningkatkan komunikasi antar gender, mengurangi miskomunikasi, dan membangun hubungan yang lebih baik.</p>
-                    <p>Dengan alat ini, Anda bisa belajar bagaimana cara merespons dengan tepat, menghindari kesalahpahaman, dan menunjukkan empati yang lebih baik.</p>
+        <main>
+            <!-- hero -->
+            <section class="hero fade-up" id="home">
+                <div class="hero-left">
+                    <h1>Mengerti Ucapan, Membangun Koneksi</h1>
+                    <p>Ubah ucapan tersirat menjadi pesan yang jelas dan konstruktif. Tools AI ini membantu Anda memahami perasaan, kebutuhan, dan konteks di balik kata-kata.</p>
+                    <div class="hero-cta">
+                        <a class="btn btn-primary" href="#translator">Mulai Terjemahkan</a>
+                        <a class="btn btn-ghost" href="#how">Cara Kerja</a>
+                    </div>
                 </div>
-                <div class="about-image">
-                    <img src="https://via.placeholder.com/400x300/cccccc/333333?text=AI+Translator" alt="AI Translator Illustration">
+
+                <aside class="hero-card hero-right">
+                    <div style="display:flex;flex-direction:column;gap:12px">
+                        <div style="display:flex;align-items:center;justify-content:space-between">
+                            <strong style="font-size:1rem">Hasil Cepat & Aman</strong>
+                            <span class="muted" style="font-size:0.9rem">Privasi terjaga</span>
+                        </div>
+
+                        <div class="feature">
+                            <div class="badge">A</div>
+                            <div>
+                                <h4>Analisis Emosi</h4>
+                                <p class="muted">Mengidentifikasi emosi dan nada bicara.</p>
+                            </div>
+                        </div>
+
+                        <div class="feature">
+                            <div class="badge">C</div>
+                            <div>
+                                <h4>Rekomendasi Respon</h4>
+                                <p class="muted">Saran balasan yang sopan dan jelas.</p>
+                            </div>
+                        </div>
+
+                        <div class="feature">
+                            <div class="badge">P</div>
+                            <div>
+                                <h4>Privasi</h4>
+                                <p class="muted">Data tetap lokal / sesuai kebijakan Anda.</p>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+            </section>
+
+            <!-- about -->
+            <section id="about" class="section fade-up">
+                <h2>Tentang Platform</h2>
+                <div style="display:flex;gap:24px;align-items:center;flex-wrap:wrap">
+                    <div style="flex:1;min-width:320px">
+                        <p class="muted">Platform ini membantu memetakan maksud tersirat dalam percakapan wanita yang sering disampaikan dengan nada halus, sarkastik, atau implisit. Dengan bantuan model AI, sistem memberikan terjemahan yang jelas, empatik, dan membantu Anda merespons secara tepat.</p>
+                        <p class="muted">Cocok untuk belajar komunikasi, meningkatkan hubungan pribadi, atau sebagai alat bantu untuk HR dan customer support.</p>
+                    </div>
+                    <div style="width:300px;background:linear-gradient(180deg,#fff,#fafafa);padding:14px;border-radius:12px;border:1px solid rgba(0,0,0,0.03)">
+                        <strong style="display:block;margin-bottom:8px">Keunggulan</strong>
+                        <ul style="color:var(--muted);margin:0;padding-left:18px;line-height:1.6">
+                            <li>Hasil ringkas & mudah dipahami</li>
+                            <li>Gaya bahasa sopan dan konstruktif</li>
+                            <li>Interaksi cepat, response-aware</li>
+                        </ul>
+                    </div>
                 </div>
+            </section>
+
+            <!-- how to use -->
+            <section id="how" class="section fade-up" style="margin-top:20px">
+                <h2>Cara Menggunakan</h2>
+                <div class="grid cols-3" style="margin-top:18px">
+                    <div class="card">
+                        <div class="num">1</div>
+                        <h3 style="margin:8px 0">Masukkan Kalimat</h3>
+                        <p class="muted">Ketik atau paste ucapan yang ingin dipahami.</p>
+                    </div>
+                    <div class="card">
+                        <div class="num">2</div>
+                        <h3 style="margin:8px 0">Proses AI</h3>
+                        <p class="muted">Tekan terjemahkan, AI menganalisis nada, emosi, dan konteks.</p>
+                    </div>
+                    <div class="card">
+                        <div class="num">3</div>
+                        <h3 style="margin:8px 0">Terima Insight</h3>
+                        <p class="muted">Dapatkan terjemahan, emosi, dan rekomendasi respon.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- tips -->
+            <section id="tips" class="section fade-up" style="margin-top:20px">
+                <h2>Tips Menghadapi Wanita</h2>
+                <div class="grid cols-3" style="margin-top:18px">
+                    <div class="card"><h4 style="margin:0 0 8px">Dengarkan</h4><p class="muted">Perhatikan nada dan konteks, bukan hanya kata.</p></div>
+                    <div class="card"><h4 style="margin:0 0 8px">Tanya dengan Lembut</h4><p class="muted">Gunakan pertanyaan klarifikasi bila ragu.</p></div>
+                    <div class="card"><h4 style="margin:0 0 8px">Berempati</h4><p class="muted">Validasi perasaan sebelum memberi solusi.</p></div>
+                </div>
+            </section>
+
+            <!-- translator -->
+            <section id="translator" class="section fade-up" style="margin-top:20px">
+                <h2>AI Translator</h2>
+                <div class="translator" style="margin-top:18px">
+                    <div>
+                        <div class="input-group">
+                            <label for="inputText">Masukkan ucapan / pesan</label>
+                            <textarea id="inputText" placeholder="Contoh: 'Terserah kamu deh...'"></textarea>
+                        </div>
+
+                        <div style="display:flex;gap:12px;align-items:center;margin-bottom:12px;flex-wrap:wrap">
+                            <div class="examples">
+                                <div class="chip" onclick="setExample('Terserah kamu deh...')">Terserah kamu deh...</div>
+                                <div class="chip" onclick="setExample('Gak apa-apa kok')">Gak apa-apa kok</div>
+                                <div class="chip" onclick="setExample('Kamu pasti lupa ya...')">Kamu pasti lupa ya...</div>
+                            </div>
+                        </div>
+
+                        <button id="translateBtn" class="translate-btn" onclick="translateText()">
+                            🔄 Terjemahkan dengan AI
+                        </button>
+
+                        <div class="helper">Tekan Ctrl+Enter untuk langsung menerjemahkan.</div>
+                    </div>
+
+                    <aside>
+                        <label for="outputText">Hasil & Rekomendasi</label>
+                        <div id="outputText" class="result">Hasil akan muncul di sini setelah proses.</div>
+                        <div style="display:flex;gap:8px;margin-top:12px">
+                            <button id="copyBtn" class="chip" onclick="copyResult()" style="background:#111;color:#fff">Salin</button>
+                            <button class="chip" onclick="clearAll()">Bersihkan</button>
+                        </div>
+                        <div id="msg" class="helper" style="margin-top:12px;color:var(--muted)"></div>
+                    </aside>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <div style="max-width:900px;margin:18px auto;color:var(--muted)">
+                <div style="margin-bottom:8px">© <strong>Penerjemah Bahasa Wanita</strong> — Instrumen untuk komunikasi yang lebih baik.</div>
+                <div>By <a href="https://github.com/fikrisn" target="_blank" rel="noopener">FkrDev</a> · Privasi dihargai · Gunakan dengan bijak</div>
             </div>
-        </section>
-
-        <!-- How to Use Section -->
-        <section class="how-to-section">
-            <h2 class="section-title">Cara Penggunaan</h2>
-            <div class="steps-grid">
-                <div class="step-item">
-                    <div class="step-number">1</div>
-                    <div class="step-title">Masukkan Ucapan</div>
-                    <div class="step-description">Ketik atau tempel ucapan wanita yang ingin Anda pahami ke dalam kotak input.</div>
-                </div>
-                <div class="step-item">
-                    <div class="step-number">2</div>
-                    <div class="step-title">Klik Terjemahkan</div>
-                    <div class="step-description">Tekan tombol "Terjemahkan" dan biarkan AI memproses ucapan tersebut.</div>
-                </div>
-                <div class="step-item">
-                    <div class="step-number">3</div>
-                    <div class="step-title">Baca Terjemahan</div>
-                    <div class="step-description">Dapatkan penjelasan mendalam tentang makna sebenarnya di balik ucapan tersebut.</div>
-                </div>
-                <div class="step-item">
-                    <div class="step-number">4</div>
-                    <div class="step-title">Pelajari & Terapkan</div>
-                    <div class="step-description">Gunakan wawasan ini untuk merespons dengan lebih baik dan meningkatkan komunikasi Anda.</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Tips Section -->
-        <section class="tips-section">
-            <h2 class="section-title">Tips Menghadapi Wanita</h2>
-            <div class="tips-grid">
-                <div class="tip-item">
-                    <div class="tip-title">Dengarkan dengan Empati</div>
-                    <div class="tip-description">Ketika wanita berbicara, fokuslah pada emosi di balik kata-kata. Jangan hanya mendengar apa yang dikatakan, tapi juga bagaimana cara mengatakannya.</div>
-                </div>
-                <div class="tip-item">
-                    <div class="tip-title">Tanyakan untuk Klarifikasi</div>
-                    <div class="tip-description">Jika ragu, tanyakan "Apa maksudmu?" atau "Bagaimana perasaanmu sebenarnya?" Ini menunjukkan bahwa Anda peduli dan ingin memahami.</div>
-                </div>
-                <div class="tip-item">
-                    <div class="tip-title">Hindari Asumsi</div>
-                    <div class="tip-description">Jangan berasumsi bahwa Anda tahu apa yang dipikirkan. Setiap orang unik, dan komunikasi wanita bisa sangat subjektif.</div>
-                </div>
-                <div class="tip-item">
-                    <div class="tip-title">Tunjukkan Perhatian</div>
-                    <div class="tip-description">Ingat detail kecil seperti tanggal penting atau preferensi. Ini menunjukkan bahwa Anda benar-benar memperhatikan.</div>
-                </div>
-                <div class="tip-item">
-                    <div class="tip-title">Berkomunikasi Jelas</div>
-                    <div class="tip-description">Ekspresikan perasaan dan pikiran Anda dengan jujur tapi lembut. Hindari bahasa yang ambigu jika memungkinkan.</div>
-                </div>
-                <div class="tip-item">
-                    <div class="tip-title">Bersabar dan Belajar</div>
-                    <div class="tip-description">Komunikasi adalah keterampilan yang bisa dipelajari. Bersabarlah dengan diri sendiri dan orang lain dalam proses ini.</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Translator Section -->
-        <section id="translator" class="translator-section">
-            <h2 class="section-title">🤖 Penerjemah AI</h2>
-            
-            <div class="quick-examples">
-                <button class="quick-example-btn" onclick="setExample('Terserah kamu deh...')">Terserah kamu deh...</button>
-                <button class="quick-example-btn" onclick="setExample('Gak apa-apa kok')">Gak apa-apa kok</button>
-                <button class="quick-example-btn" onclick="setExample('Udah tau aja deh...')">Udah tau aja deh...</button>
-                <button class="quick-example-btn" onclick="setExample('Kamu pasti lupa ya...')">Kamu pasti lupa ya...</button>
-            </div>
-
-            <div class="input-group">
-                <label for="inputText">Masukkan percakapan yang ingin diterjemahkan:</label>
-                <textarea id="inputText" rows="4" placeholder="Contoh: 'Terserah kamu deh...' atau 'Gak apa-apa kok'"></textarea>
-            </div>
-
-            <button onclick="translateText()" class="translate-btn" id="translateBtn">
-                <span id="btnText">🔄 Terjemahkan</span>
-            </button>
-
-            <div class="input-group">
-                <label for="outputText">Hasil terjemahan:</label>
-                <textarea id="outputText" rows="6" readonly placeholder="Hasil terjemahan akan muncul di sini..."></textarea>
-            </div>
-
-            <div id="errorMessage" class="error-message"></div>
-            <div id="successMessage" class="success-message"></div>
-        </section>
-
-        <footer class="footer">
-            <p>Dibuat dengan ❤️ untuk komunikasi yang lebih baik | Powered by <a href="https://github.com/fikrisn" target="_blank">FkrDev</a></p>
         </footer>
     </div>
 
     <script>
-        function setExample(text) {
-            document.getElementById('inputText').value = text;
-            document.getElementById('inputText').focus();
+        // simple in-view animation
+        function inView() {
+            document.querySelectorAll('.fade-up').forEach(el=>{
+                const r = el.getBoundingClientRect();
+                if(r.top < (window.innerHeight || document.documentElement.clientHeight) - 60){
+                    el.classList.add('inview');
+                }
+            });
+        }
+        window.addEventListener('scroll', inView);
+        window.addEventListener('load', inView);
+
+        function setExample(text){
+            const el = document.getElementById('inputText');
+            el.value = text;
+            el.focus();
         }
 
-        async function translateText() {
-            const inputText = document.getElementById('inputText').value.trim();
-            const outputTextArea = document.getElementById('outputText');
-            const translateBtn = document.getElementById('translateBtn');
-            const btnText = document.getElementById('btnText');
-            const errorMessage = document.getElementById('errorMessage');
-            const successMessage = document.getElementById('successMessage');
+        function showMessage(text, timeout=3000){
+            const msg = document.getElementById('msg');
+            msg.textContent = text;
+            if(timeout>0) setTimeout(()=>{ msg.textContent=''; }, timeout);
+        }
 
-            // Reset messages
-            errorMessage.style.display = 'none';
-            successMessage.style.display = 'none';
+        function clearAll(){
+            document.getElementById('inputText').value='';
+            document.getElementById('outputText').textContent='Hasil akan muncul di sini setelah proses.';
+            showMessage('Dibersihkan');
+        }
 
-            // Validasi input
-            if (!inputText) {
-                showError('Harap masukkan teks yang ingin diterjemahkan!');
-                return;
-            }
-
-            // Disable button and show loading
-            translateBtn.disabled = true;
-            btnText.innerHTML = '<div class="spinner"></div> Menerjemahkan...';
-            outputTextArea.value = 'Sedang menerjemahkan...';
-
-            try {
-                // Construct API URL
-                const API_URL = '/api/translate';
-                
-                const response = await fetch(API_URL, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        text: inputText
-                    })
+        async function translateText(){
+            const btn = document.getElementById('translateBtn');
+            const input = document.getElementById('inputText').value.trim();
+            const out = document.getElementById('outputText');
+            if(!input){ showMessage('Masukkan teks terlebih dahulu'); return; }
+            btn.disabled=true; const originalText = btn.textContent; btn.textContent='Memproses...';
+            out.textContent = 'Memproses dengan AI...';
+            try{
+                const resp = await fetch('/api/translate', {
+                    method:'POST',
+                    headers:{'Content-Type':'application/json'},
+                    body: JSON.stringify({ text: input })
                 });
-
-                if (!response.ok) {
-                    const errorText = await response.text();
-                    let errorData;
-                    
-                    try {
-                        errorData = JSON.parse(errorText);
-                    } catch (e) {
-                        errorData = { error: errorText };
-                    }
-                    
-                    throw new Error(`HTTP ${response.status}: ${errorData.error || 'Unknown error'}`);
+                if(!resp.ok){
+                    const txt = await resp.text().catch(()=>null);
+                    throw new Error(`HTTP ${resp.status} - ${txt||resp.statusText}`);
                 }
-
-                const data = await response.json();
-                
-                if (data.translation) {
-                    outputTextArea.value = data.translation;
-                    showSuccess('Terjemahan berhasil!');
+                const data = await resp.json();
+                if(data && data.translation){
+                    out.textContent = data.translation;
+                    showMessage('Terjemahan berhasil', 2500);
                 } else {
-                    throw new Error('Format respons tidak valid dari server');
+                    out.textContent = 'Respons server tidak sesuai.';
+                    showMessage('Gagal: format respons tidak valid',4000);
                 }
-
-            } catch (error) {
-                outputTextArea.value = '';
-                
-                if (error.message.includes('404')) {
-                    showError('Endpoint API tidak ditemukan. Pastikan file api/translate.js ada di folder yang tepat.');
-                } else if (error.message.includes('405')) {
-                    showError('Method tidak diizinkan. Pastikan API endpoint menerima method POST.');
-                } else if (error.message.includes('500')) {
-                    showError('Terjadi kesalahan pada server. Periksa log server atau environment variables.');
-                } else if (error.message.includes('429')) {
-                    showError('Terlalu banyak request. Coba lagi dalam beberapa saat.');
-                } else if (error.message.includes('Failed to fetch')) {
-                    showError('Gagal menghubungi server. Pastikan server berjalan dan tidak ada masalah CORS.');
-                } else {
-                    showError(`Terjadi kesalahan: ${error.message}`);
-                }
-            } finally {
-                // Re-enable button
-                translateBtn.disabled = false;
-                btnText.innerHTML = '🔄 Terjemahkan';
+            }catch(err){
+                out.textContent = '';
+                showMessage('Error: '+err.message, 6000);
+            }finally{
+                btn.disabled=false; btn.textContent=originalText;
             }
         }
 
-        function showError(message) {
-            const errorMessage = document.getElementById('errorMessage');
-            errorMessage.textContent = message;
-            errorMessage.style.display = 'block';
+        function copyResult(){
+            const out = document.getElementById('outputText').textContent;
+            if(!out) { showMessage('Tidak ada hasil untuk disalin'); return; }
+            navigator.clipboard.writeText(out).then(()=> showMessage('Hasil disalin ke clipboard',2000)).catch(()=> showMessage('Gagal menyalin',2000));
         }
 
-        function showSuccess(message) {
-            const successMessage = document.getElementById('successMessage');
-            successMessage.textContent = message;
-            successMessage.style.display = 'block';
-        }
-
-        // Allow Enter key to trigger translation
-        document.getElementById('inputText').addEventListener('keydown', function(event) {
-            if (event.ctrlKey && event.key === 'Enter') {
-                translateText();
-            }
-        });
-
-        // Auto-resize textareas
-        function autoResize(textarea) {
-            textarea.style.height = 'auto';
-            textarea.style.height = textarea.scrollHeight + 'px';
-        }
-
-        document.getElementById('inputText').addEventListener('input', function() {
-            autoResize(this);
-        });
-
-        document.getElementById('outputText').addEventListener('input', function() {
-            autoResize(this);
+        // keyboard shortcut
+        document.getElementById('inputText').addEventListener('keydown', function(e){
+            if(e.ctrlKey && e.key === 'Enter'){ e.preventDefault(); translateText(); }
         });
     </script>
 </body>
