@@ -51,7 +51,7 @@ Output: "Sebenarnya saya merasa kecewa, tapi saya tidak ingin membuat masalah. S
 
 Sekarang terjemahkan ucapan berikut dengan gaya yang sama - berikan makna yang sebenarnya di balik ucapan tersebut dengan cara yang sopan dan konstruktif:
 
-"${text.trim()}"
+"${text.trim()}""
 
 Berikan terjemahan yang:
 1. Menjelaskan perasaan atau emosi yang sebenarnya
@@ -59,7 +59,19 @@ Berikan terjemahan yang:
 3. Menggunakan bahasa yang jelas dan mudah dipahami
 4. Membantu komunikasi yang lebih baik
 
-Jawab hanya dengan terjemahannya saja, tanpa penjelasan tambahan.`;
+Setelah terjemahan, berikan 3 pilihan balasan yang sopan dan konstruktif, masing-masing dengan alasan singkat mengapa balasan tersebut baik.
+
+Format respons sebagai JSON:
+{
+  "translation": "terjemahan di sini",
+  "suggestions": [
+    {"text": "balasan 1", "reason": "alasan 1"},
+    {"text": "balasan 2", "reason": "alasan 2"},
+    {"text": "balasan 3", "reason": "alasan 3"}
+  ]
+}
+
+Jawab hanya dengan JSON saja, tanpa penjelasan tambahan.`;
 
     console.log('Calling Gemini API...');
     
@@ -100,20 +112,16 @@ const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/m
     }
 
     const data = await response.json();
-    console.log('Gemini API response:', JSON.stringify(data, null, 2));
     
-    if (data.candidates && data.candidates[0] && data.candidates[0].content) {
-      const translation = data.candidates[0].content.parts[0].text.trim();
-      
-      return res.status(200).json({
-        translation: translation,
-        success: true,
-        timestamp: new Date().toISOString()
-      });
-    } else {
-      console.error('Invalid response format from Gemini API:', data);
-      return res.status(500).json({ error: 'Format respons tidak valid dari AI' });
+    // Parse the response
+    let parsedData;
+    try {
+      parsedData = JSON.parse(data.candidates[0].content.parts[0].text.trim());
+    } catch (e) {
+      throw new Error('Respons AI tidak valid');
     }
+
+    res.status(200).json(parsedData);
 
   } catch (error) {
     console.error('Server error:', error);

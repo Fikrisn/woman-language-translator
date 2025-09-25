@@ -17,8 +17,10 @@
             --shadow: 0 8px 30px rgba(16,24,40,0.08);
             --radius:14px;
             --container:1100px;
+            --header-height:76px; /* added for fixed header offset */
         }
         *{box-sizing:border-box}
+        html { scroll-behavior: smooth; } /* smooth native scrolling */
         html,body{height:100%}
         body{
             font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
@@ -29,41 +31,80 @@
             -moz-osx-font-smoothing:grayscale;
             line-height:1.5;
         }
-        .wrap{max-width:var(--container);margin:32px auto;padding:24px}
-        /* header */
-        header{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:28px}
+
+        /* make layout full width (not centered) */
+        .wrap{width:100%;max-width:none;margin:0;padding:0}
+
+        /* header - make fixed full-width */
+        header{
+            position:fixed;
+            top:0;
+            left:0;
+            right:0;
+            height:var(--header-height);
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            gap:20px;
+            padding:12px 40px;
+            background:rgba(255,255,255,0.78);
+            backdrop-filter:blur(6px);
+            box-shadow:0 6px 20px rgba(16,24,40,0.06);
+            z-index:1000;
+            margin-bottom:0;
+        }
         .brand{display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--text)}
         .logo{
-            width:56px;height:56px;border-radius:10px;background:linear-gradient(180deg,#fff,#f2f2f2);
+            width:48px;height:48px;border-radius:10px;background:linear-gradient(180deg,#fff,#f2f2f2);
             display:flex;align-items:center;justify-content:center;font-weight:800;color:var(--accent);box-shadow:var(--shadow);
         }
-        .brand h3{font-size:1.05rem;margin:0}
+        .brand h3{font-size:1rem;margin:0}
         nav{display:flex;gap:18px;align-items:center}
         nav a{color:var(--muted);text-decoration:none;font-weight:600;padding:8px 12px;border-radius:10px}
         nav a:hover{color:var(--accent);background:rgba(0,0,0,0.03)}
         .cta-primary{background:var(--accent);color:#fff;padding:10px 16px;border-radius:10px;text-decoration:none;font-weight:600}
         .cta-primary:hover{opacity:0.95;transform:translateY(-2px)}
-        /* hero */
+
+        /* ensure main content starts after fixed header */
+        main{padding-top: calc(var(--header-height) + 28px);}
+
+        /* hero - full bleed style (edge-to-edge) */
         .hero{
-            background: linear-gradient(135deg, rgba(0,0,0,0.03), rgba(0,0,0,0.02));
-            border-radius:var(--radius);
-            padding:64px;
-            display:grid;grid-template-columns:1fr 420px;gap:36px;align-items:center;box-shadow:var(--shadow);
+            width:100%;
+            border-radius:0;
+            padding:96px 6vw; /* responsive horizontal padding */
+            display:grid;
+            grid-template-columns:1fr 420px;
+            gap:36px;
+            align-items:center;
+            background: linear-gradient(180deg, rgba(0,0,0,0.03), rgba(0,0,0,0.02));
+            box-shadow:none;
+            border-bottom:1px solid rgba(0,0,0,0.03);
         }
-        .hero-left h1{font-size:2.4rem;margin:0 0 14px;color:var(--accent);letter-spacing:-0.02em}
-        .hero-left p{color:var(--muted);margin:0 0 22px;font-size:1rem;max-width:720px}
+        .hero-left h1{font-size:2.6rem;margin:0 0 14px;color:var(--accent);letter-spacing:-0.02em}
+        .hero-left p{color:var(--muted);margin:0 0 22px;font-size:1.03rem;max-width:720px}
         .hero-cta{display:flex;gap:12px;align-items:center}
         .btn{padding:12px 18px;border-radius:10px;text-decoration:none;font-weight:700;display:inline-flex;gap:10px;align-items:center}
         .btn-ghost{background:transparent;border:1px solid rgba(0,0,0,0.06);color:var(--accent)}
         .btn-primary{background:var(--accent);color:#fff}
-        /* quick features on hero right */
+
+        /* hero card (kept visually contained) */
         .hero-card{background:var(--card);padding:20px;border-radius:12px;box-shadow:var(--shadow);border:1px solid rgba(0,0,0,0.03)}
         .feature{display:flex;gap:12px;align-items:flex-start;margin-bottom:12px}
         .badge{width:44px;height:44px;border-radius:8px;background:#f2f2f2;display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--accent)}
         .feature h4{margin:0;font-size:1rem}
         .feature p{margin:6px 0 0;color:var(--muted);font-size:0.95rem}
-        /* sections */
-        .section{margin-top:28px;background:var(--card);padding:34px;border-radius:12px;box-shadow:var(--shadow);border:1px solid rgba(0,0,0,0.03)}
+
+        /* sections - stretch full width but content aligned with padding */
+        .section{
+            margin-top:28px;
+            background:var(--card);
+            padding:48px 6vw;
+            border-radius:0;
+            box-shadow:0 8px 30px rgba(16,24,40,0.03);
+            border-top:1px solid rgba(0,0,0,0.02);
+        }
+        .section > .inner { max-width:var(--container); margin:0 auto; } /* constrain inner content */
         .section h2{margin:0 0 18px;font-size:1.4rem;color:var(--accent)}
         .grid{display:grid;gap:18px}
         .grid.cols-3{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
@@ -71,7 +112,8 @@
         .card{background:linear-gradient(180deg,#fff,#fbfbfb);padding:20px;border-radius:12px;border:1px solid rgba(0,0,0,0.03)}
         .num{background:#111;color:#fff;width:44px;height:44px;border-radius:10px;display:inline-flex;align-items:center;justify-content:center;font-weight:700;margin-bottom:12px}
         .muted{color:var(--muted)}
-        /* translator */
+
+        /* translator - keep inner constrained */
         .translator{display:grid;grid-template-columns:1fr 360px;gap:24px;align-items:start}
         .input-group{margin-bottom:14px}
         label{display:block;margin-bottom:8px;font-weight:700}
@@ -83,12 +125,23 @@
         .examples{display:flex;flex-wrap:wrap;gap:8px}
         .chip{padding:8px 12px;border-radius:999px;background:#f3f3f4;border:1px solid rgba(0,0,0,0.03);cursor:pointer;font-weight:600;color:var(--muted)}
         .chip:hover{background:#e9e9ea;color:var(--accent)}
+
+        /* new: suggestions section */
+        .suggestions{margin-top:16px}
+        .suggestions h4{margin:0 0 12px;font-size:1rem;color:var(--accent)}
+        .suggestion-list{display:flex;flex-direction:column;gap:8px}
+        .suggestion-item{background:#f9f9f9;padding:12px;border-radius:8px;border:1px solid rgba(0,0,0,0.03);cursor:pointer;transition:all 0.3s ease}
+        .suggestion-item:hover{background:#e9e9ea;border-color:var(--accent)}
+        .suggestion-text{font-weight:500;color:var(--text)}
+        .suggestion-reason{font-size:0.9rem;color:var(--muted);margin-top:4px}
+
         /* footer */
-        footer{margin-top:26px;text-align:center;color:var(--muted);font-size:0.95rem}
+        footer{margin-top:26px;text-align:center;color:var(--muted);font-size:0.95rem;padding:36px 6vw;background:transparent}
         footer a{color:var(--accent);font-weight:700;text-decoration:none}
-        /* responsive */
+
+        /* responsive tweaks */
         @media (max-width:980px){
-            .hero{grid-template-columns:1fr; padding:36px}
+            .hero{grid-template-columns:1fr; padding:64px 6vw}
             .translator{grid-template-columns:1fr}
             .hero-right{order:2}
         }
@@ -169,89 +222,101 @@
 
             <!-- about -->
             <section id="about" class="section fade-up">
-                <h2>Tentang Platform</h2>
-                <div style="display:flex;gap:24px;align-items:center;flex-wrap:wrap">
-                    <div style="flex:1;min-width:320px">
-                        <p class="muted">Platform ini membantu memetakan maksud tersirat dalam percakapan wanita yang sering disampaikan dengan nada halus, sarkastik, atau implisit. Dengan bantuan model AI, sistem memberikan terjemahan yang jelas, empatik, dan membantu Anda merespons secara tepat.</p>
-                        <p class="muted">Cocok untuk belajar komunikasi, meningkatkan hubungan pribadi, atau sebagai alat bantu untuk HR dan customer support.</p>
-                    </div>
-                    <div style="width:300px;background:linear-gradient(180deg,#fff,#fafafa);padding:14px;border-radius:12px;border:1px solid rgba(0,0,0,0.03)">
-                        <strong style="display:block;margin-bottom:8px">Keunggulan</strong>
-                        <ul style="color:var(--muted);margin:0;padding-left:18px;line-height:1.6">
-                            <li>Hasil ringkas & mudah dipahami</li>
-                            <li>Gaya bahasa sopan dan konstruktif</li>
-                            <li>Interaksi cepat, response-aware</li>
-                        </ul>
+                <div class="inner"> <!-- new wrapper to constrain inner content -->
+                    <h2>Tentang Platform</h2>
+                    <div style="display:flex;gap:24px;align-items:center;flex-wrap:wrap">
+                        <div style="flex:1;min-width:320px">
+                            <p class="muted">Platform ini membantu memetakan maksud tersirat dalam percakapan wanita yang sering disampaikan dengan nada halus, sarkastik, atau implisit. Dengan bantuan model AI, sistem memberikan terjemahan yang jelas, empatik, dan membantu Anda merespons secara tepat.</p>
+                            <p class="muted">Cocok untuk belajar komunikasi, meningkatkan hubungan pribadi, atau sebagai alat bantu untuk HR dan customer support.</p>
+                        </div>
+                        <div style="width:300px;background:linear-gradient(180deg,#fff,#fafafa);padding:14px;border-radius:12px;border:1px solid rgba(0,0,0,0.03)">
+                            <strong style="display:block;margin-bottom:8px">Keunggulan</strong>
+                            <ul style="color:var(--muted);margin:0;padding-left:18px;line-height:1.6">
+                                <li>Hasil ringkas & mudah dipahami</li>
+                                <li>Gaya bahasa sopan dan konstruktif</li>
+                                <li>Interaksi cepat, response-aware</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </section>
 
             <!-- how to use -->
             <section id="how" class="section fade-up" style="margin-top:20px">
-                <h2>Cara Menggunakan</h2>
-                <div class="grid cols-3" style="margin-top:18px">
-                    <div class="card">
-                        <div class="num">1</div>
-                        <h3 style="margin:8px 0">Masukkan Kalimat</h3>
-                        <p class="muted">Ketik atau paste ucapan yang ingin dipahami.</p>
-                    </div>
-                    <div class="card">
-                        <div class="num">2</div>
-                        <h3 style="margin:8px 0">Proses AI</h3>
-                        <p class="muted">Tekan terjemahkan, AI menganalisis nada, emosi, dan konteks.</p>
-                    </div>
-                    <div class="card">
-                        <div class="num">3</div>
-                        <h3 style="margin:8px 0">Terima Insight</h3>
-                        <p class="muted">Dapatkan terjemahan, emosi, dan rekomendasi respon.</p>
+                <div class="inner">
+                    <h2>Cara Menggunakan</h2>
+                    <div class="grid cols-3" style="margin-top:18px">
+                        <div class="card">
+                            <div class="num">1</div>
+                            <h3 style="margin:8px 0">Masukkan Kalimat</h3>
+                            <p class="muted">Ketik atau paste ucapan yang ingin dipahami.</p>
+                        </div>
+                        <div class="card">
+                            <div class="num">2</div>
+                            <h3 style="margin:8px 0">Proses AI</h3>
+                            <p class="muted">Tekan terjemahkan, AI menganalisis nada, emosi, dan konteks.</p>
+                        </div>
+                        <div class="card">
+                            <div class="num">3</div>
+                            <h3 style="margin:8px 0">Terima Insight</h3>
+                            <p class="muted">Dapatkan terjemahan, emosi, dan rekomendasi respon.</p>
+                        </div>
                     </div>
                 </div>
             </section>
 
             <!-- tips -->
             <section id="tips" class="section fade-up" style="margin-top:20px">
-                <h2>Tips Menghadapi Wanita</h2>
-                <div class="grid cols-3" style="margin-top:18px">
-                    <div class="card"><h4 style="margin:0 0 8px">Dengarkan</h4><p class="muted">Perhatikan nada dan konteks, bukan hanya kata.</p></div>
-                    <div class="card"><h4 style="margin:0 0 8px">Tanya dengan Lembut</h4><p class="muted">Gunakan pertanyaan klarifikasi bila ragu.</p></div>
-                    <div class="card"><h4 style="margin:0 0 8px">Berempati</h4><p class="muted">Validasi perasaan sebelum memberi solusi.</p></div>
+                <div class="inner">
+                    <h2>Tips Menghadapi Wanita</h2>
+                    <div class="grid cols-3" style="margin-top:18px">
+                        <div class="card"><h4 style="margin:0 0 8px">Dengarkan</h4><p class="muted">Perhatikan nada dan konteks, bukan hanya kata.</p></div>
+                        <div class="card"><h4 style="margin:0 0 8px">Tanya dengan Lembut</h4><p class="muted">Gunakan pertanyaan klarifikasi bila ragu.</p></div>
+                        <div class="card"><h4 style="margin:0 0 8px">Berempati</h4><p class="muted">Validasi perasaan sebelum memberi solusi.</p></div>
+                    </div>
                 </div>
             </section>
 
             <!-- translator -->
             <section id="translator" class="section fade-up" style="margin-top:20px">
-                <h2>AI Translator</h2>
-                <div class="translator" style="margin-top:18px">
-                    <div>
-                        <div class="input-group">
-                            <label for="inputText">Masukkan ucapan / pesan</label>
-                            <textarea id="inputText" placeholder="Contoh: 'Terserah kamu deh...'"></textarea>
-                        </div>
-
-                        <div style="display:flex;gap:12px;align-items:center;margin-bottom:12px;flex-wrap:wrap">
-                            <div class="examples">
-                                <div class="chip" onclick="setExample('Terserah kamu deh...')">Terserah kamu deh...</div>
-                                <div class="chip" onclick="setExample('Gak apa-apa kok')">Gak apa-apa kok</div>
-                                <div class="chip" onclick="setExample('Kamu pasti lupa ya...')">Kamu pasti lupa ya...</div>
+                <div class="inner">
+                    <h2>AI Translator</h2>
+                    <div class="translator" style="margin-top:18px">
+                        <div>
+                            <div class="input-group">
+                                <label for="inputText">Masukkan ucapan / pesan</label>
+                                <textarea id="inputText" placeholder="Contoh: 'Terserah kamu deh...'"></textarea>
                             </div>
+
+                            <div style="display:flex;gap:12px;align-items:center;margin-bottom:12px;flex-wrap:wrap">
+                                <div class="examples">
+                                    <div class="chip" onclick="setExample('Terserah kamu deh...')">Terserah kamu deh...</div>
+                                    <div class="chip" onclick="setExample('Gak apa-apa kok')">Gak apa-apa kok</div>
+                                    <div class="chip" onclick="setExample('Kamu pasti lupa ya...')">Kamu pasti lupa ya...</div>
+                                </div>
+                            </div>
+
+                            <button id="translateBtn" class="translate-btn" onclick="translateText()">
+                                🔄 Terjemahkan dengan AI
+                            </button>
+
+                            <div class="helper">Tekan Ctrl+Enter untuk langsung menerjemahkan.</div>
                         </div>
 
-                        <button id="translateBtn" class="translate-btn" onclick="translateText()">
-                            🔄 Terjemahkan dengan AI
-                        </button>
-
-                        <div class="helper">Tekan Ctrl+Enter untuk langsung menerjemahkan.</div>
+                        <aside>
+                            <label for="outputText">Hasil & Rekomendasi</label>
+                            <div id="outputText" class="result">Hasil akan muncul di sini setelah proses.</div>
+                            <div id="suggestions" class="suggestions" style="display:none">
+                                <h4>Pilihan Balasan</h4>
+                                <div id="suggestionList" class="suggestion-list"></div>
+                            </div>
+                            <div style="display:flex;gap:8px;margin-top:12px">
+                                <button id="copyBtn" class="chip" onclick="copyResult()" style="background:#111;color:#fff">Salin</button>
+                                <button class="chip" onclick="clearAll()">Bersihkan</button>
+                            </div>
+                            <div id="msg" class="helper" style="margin-top:12px;color:var(--muted)"></div>
+                        </aside>
                     </div>
-
-                    <aside>
-                        <label for="outputText">Hasil & Rekomendasi</label>
-                        <div id="outputText" class="result">Hasil akan muncul di sini setelah proses.</div>
-                        <div style="display:flex;gap:8px;margin-top:12px">
-                            <button id="copyBtn" class="chip" onclick="copyResult()" style="background:#111;color:#fff">Salin</button>
-                            <button class="chip" onclick="clearAll()">Bersihkan</button>
-                        </div>
-                        <div id="msg" class="helper" style="margin-top:12px;color:var(--muted)"></div>
-                    </aside>
                 </div>
             </section>
         </main>
@@ -277,6 +342,23 @@
         window.addEventListener('scroll', inView);
         window.addEventListener('load', inView);
 
+        /* Smooth scrolling with header offset for anchor clicks */
+        (function(){
+            const headerHeight = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-height')) || 76;
+            document.querySelectorAll('a[href^="#"]').forEach(link=>{
+                link.addEventListener('click', function(e){
+                    const href = this.getAttribute('href');
+                    if(!href || href === '#') return;
+                    const target = document.querySelector(href);
+                    if(!target) return;
+                    e.preventDefault();
+                    const rect = target.getBoundingClientRect();
+                    const top = rect.top + window.scrollY - headerHeight - 12; // small gap
+                    window.scrollTo({ top, behavior: 'smooth' });
+                });
+            });
+        })();
+
         function setExample(text){
             const el = document.getElementById('inputText');
             el.value = text;
@@ -292,6 +374,8 @@
         function clearAll(){
             document.getElementById('inputText').value='';
             document.getElementById('outputText').textContent='Hasil akan muncul di sini setelah proses.';
+            document.getElementById('suggestions').style.display = 'none';
+            document.getElementById('suggestionList').innerHTML = '';
             showMessage('Dibersihkan');
         }
 
@@ -299,9 +383,13 @@
             const btn = document.getElementById('translateBtn');
             const input = document.getElementById('inputText').value.trim();
             const out = document.getElementById('outputText');
+            const suggestionsDiv = document.getElementById('suggestions');
+            const suggestionList = document.getElementById('suggestionList');
             if(!input){ showMessage('Masukkan teks terlebih dahulu'); return; }
             btn.disabled=true; const originalText = btn.textContent; btn.textContent='Memproses...';
             out.textContent = 'Memproses dengan AI...';
+            suggestionsDiv.style.display = 'none';
+            suggestionList.innerHTML = '';
             try{
                 const resp = await fetch('/api/translate', {
                     method:'POST',
@@ -315,6 +403,15 @@
                 const data = await resp.json();
                 if(data && data.translation){
                     out.textContent = data.translation;
+                    if(data.suggestions && Array.isArray(data.suggestions)){
+                        suggestionsDiv.style.display = 'block';
+                        suggestionList.innerHTML = data.suggestions.map(s => `
+                            <div class="suggestion-item" onclick="copySuggestion('${s.text.replace(/'/g, "\\'")}')">
+                                <div class="suggestion-text">${s.text}</div>
+                                <div class="suggestion-reason">${s.reason}</div>
+                            </div>
+                        `).join('');
+                    }
                     showMessage('Terjemahan berhasil', 2500);
                 } else {
                     out.textContent = 'Respons server tidak sesuai.';
@@ -326,6 +423,10 @@
             }finally{
                 btn.disabled=false; btn.textContent=originalText;
             }
+        }
+
+        function copySuggestion(text){
+            navigator.clipboard.writeText(text).then(()=> showMessage('Balasan disalin ke clipboard',2000)).catch(()=> showMessage('Gagal menyalin',2000));
         }
 
         function copyResult(){
