@@ -49,7 +49,7 @@
             padding: 0;
         }
 
-        /* Header */
+        /* Header - tambah hamburger menu untuk mobile */
         header {
             position: fixed;
             top: 0;
@@ -118,6 +118,73 @@
         .cta-primary:hover {
             opacity: 0.95;
             transform: translateY(-2px);
+        }
+
+        /* Hamburger menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 6px;
+            transition: background 0.3s;
+        }
+
+        .hamburger:hover {
+            background: rgba(0,0,0,0.05);
+        }
+
+        .hamburger span {
+            width: 24px;
+            height: 2px;
+            background: var(--accent);
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.open span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.open span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.open span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+
+        /* Mobile nav overlay */
+        .nav-overlay {
+            position: fixed;
+            top: var(--header-height);
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            z-index: 999;
+        }
+
+        .nav-overlay.open {
+            display: flex;
+        }
+
+        .nav-overlay a {
+            font-size: 1.2rem;
+            padding: 12px 20px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-overlay a:hover {
+            background: var(--accent);
+            color: #fff;
         }
 
         /* Main Content */
@@ -550,30 +617,51 @@
 
         /* Responsive */
         @media (max-width: 980px) {
-            .hero {
-                grid-template-columns: 1fr;
-                padding: 64px 6vw;
-            }
-            .translator {
-                grid-template-columns: 1fr;
-            }
+            .hero { padding: 64px 5vw; gap: 28px; }
+            .hero-left h1 { font-size: 2.2rem; }
+            .hero-left p { font-size: 1rem; max-width: 100%; }
+            .hero-card { margin-top: 12px; }
+            .translator { grid-template-columns: 1fr; gap: 20px; }
+            .grid.cols-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
         }
 
-        @media (max-width: 640px) {
-            footer {
-                margin: 24px 0;
-                padding: 12px 6vw;
-            }
-            .footer-inner {
-                flex-direction: column;
-                gap: 8px;
-            }
-            .hero-left h1 {
-                font-size: 1.6rem;
-            }
-            .hero-left p {
-                font-size: 0.95rem;
-            }
+        @media (max-width: 768px) {
+            header { padding: 10px 20px; height: 68px; }
+            nav { display: none; } /* hide desktop nav */
+            .hamburger { display: flex; } /* show hamburger */
+            .brand h3 { font-size: 0.95rem; }
+            .hero { padding: 56px 5vw; }
+            .hero-left h1 { font-size: 1.8rem; }
+            .hero-left p { font-size: 0.98rem; }
+            .btn { padding: 12px 18px; font-size: 1rem; }
+            .hero-card { padding: 18px; }
+            .card { padding: 18px; }
+            .section { padding: 40px 5vw; border-radius: 8px; }
+        }
+
+        @media (max-width: 480px) {
+            header { padding: 8px 14px; height: 64px; }
+            nav { gap: 8px; font-size: 0.92rem; }
+            .cta-primary { padding: 8px 12px; font-size: 0.92rem; }
+            .hero { padding: 40px 4vw; grid-template-columns: 1fr; gap: 18px; }
+            .hero-left h1 { font-size: 1.4rem; line-height: 1.25; }
+            .hero-left p { font-size: 0.95rem; }
+            .hero-cta { flex-direction: column; align-items: stretch; gap: 10px; }
+            .btn { width: 100%; justify-content: center; }
+            .hero-card { padding: 14px; border-radius: 12px; }
+            .translator { grid-template-columns: 1fr; gap: 14px; }
+            textarea { min-height: 120px; padding: 12px; font-size: 0.95rem; }
+            .translate-btn { padding: 12px; font-size: 1rem; }
+            .footer-inner { flex-direction: column; gap: 8px; font-size: 0.9rem; padding: 6px 0; }
+            .chip { padding: 6px 10px; font-size: 0.9rem; }
+            .card { padding: 14px; }
+            .num { width: 44px; height: 44px; font-size: 1.05rem; }
+        }
+
+        /* minor accessibility: increase tap target on very small screens */
+        @media (max-width: 360px) {
+            .btn, .translate-btn, .cta-primary { padding: 12px 14px; font-size: 0.98rem; }
+            .icon { width: 40px; height: 40px; }
         }
 
         /* transparent / minimal scrollbar */
@@ -624,7 +712,21 @@
                 <a href="#translator">Translator</a>
                 <a class="cta-primary" href="#translator">Coba Sekarang</a>
             </nav>
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </header>
+
+        <!-- Mobile nav overlay -->
+        <div class="nav-overlay" id="navOverlay">
+            <a href="#about" onclick="closeMenu()">Tentang</a>
+            <a href="#how" onclick="closeMenu()">Cara Kerja</a>
+            <a href="#tips" onclick="closeMenu()">Tips</a>
+            <a href="#translator" onclick="closeMenu()">Translator</a>
+            <a class="cta-primary" href="#translator" onclick="closeMenu()">Coba Sekarang</a>
+        </div>
 
         <main>
             <!-- Hero -->
@@ -917,6 +1019,31 @@
             if (!out) { showMessage('Tidak ada hasil untuk disalin'); return; }
             navigator.clipboard.writeText(out).then(() => showMessage('Hasil disalin ke clipboard', 2000)).catch(() => showMessage('Gagal menyalin', 2000));
         }
+
+        // Toggle mobile menu
+        function toggleMenu() {
+            const hamburger = document.querySelector('.hamburger');
+            const overlay = document.getElementById('navOverlay');
+            hamburger.classList.toggle('open');
+            overlay.classList.toggle('open');
+        }
+
+        // Close mobile menu
+        function closeMenu() {
+            const hamburger = document.querySelector('.hamburger');
+            const overlay = document.getElementById('navOverlay');
+            hamburger.classList.remove('open');
+            overlay.classList.remove('open');
+        }
+
+        // Close menu on outside click
+        document.addEventListener('click', function(e) {
+            const hamburger = document.querySelector('.hamburger');
+            const overlay = document.getElementById('navOverlay');
+            if (!hamburger.contains(e.target) && !overlay.contains(e.target)) {
+                closeMenu();
+            }
+        });
 
         // Keyboard shortcut
         document.getElementById('inputText').addEventListener('keydown', function(e) {
