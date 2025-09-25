@@ -13,7 +13,7 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
             min-height: 100vh;
             color: #333;
             line-height: 1.6;
@@ -28,9 +28,9 @@
         /* Hero Section */
         .hero {
             text-align: center;
-            color: white;
-            padding: 80px 20px;
-            background: rgba(255, 255, 255, 0.1);
+            color: #000;
+            padding: 100px 20px;
+            background: rgba(255, 255, 255, 0.9);
             border-radius: 20px;
             margin-bottom: 60px;
             backdrop-filter: blur(10px);
@@ -38,131 +38,214 @@
         }
 
         .hero h1 {
-            font-size: 3rem;
+            font-size: 3.5rem;
             margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
         }
 
         .hero p {
-            font-size: 1.3rem;
-            opacity: 0.9;
-            max-width: 600px;
-            margin: 0 auto;
+            font-size: 1.4rem;
+            opacity: 0.8;
+            max-width: 700px;
+            margin: 0 auto 30px;
         }
 
         .cta-btn {
             display: inline-block;
-            background: linear-gradient(135deg, #5a67d8, #667eea);
+            background: linear-gradient(135deg, #333, #666);
             color: white;
-            padding: 15px 30px;
+            padding: 18px 40px;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
-            margin-top: 30px;
+            font-size: 1.1rem;
+            margin-top: 20px;
             transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(90, 103, 216, 0.3);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
         .cta-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(90, 103, 216, 0.4);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
         }
 
-        /* Examples Section */
-        .examples-section {
+        /* About Section */
+        .about-section {
             background: rgba(255,255,255,0.95);
             border-radius: 20px;
-            padding: 40px;
+            padding: 60px 40px;
             margin-bottom: 60px;
             box-shadow: 0 15px 35px rgba(0,0,0,0.1);
             backdrop-filter: blur(10px);
         }
 
         .section-title {
-            font-size: 2rem;
+            font-size: 2.5rem;
             margin-bottom: 30px;
-            color: #5a67d8;
+            color: #000;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .about-image {
             text-align: center;
         }
 
-        .examples-grid {
+        .about-image img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        /* How to Use Section */
+        .how-to-section {
+            background: rgba(0,0,0,0.05);
+            border-radius: 20px;
+            padding: 60px 40px;
+            margin-bottom: 60px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .step-item {
+            background: white;
+            padding: 30px 20px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .step-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .step-number {
+            font-size: 3rem;
+            color: #666;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .step-title {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .step-description {
+            font-size: 1rem;
+            color: #555;
+        }
+
+        /* Tips Section */
+        .tips-section {
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
+            padding: 60px 40px;
+            margin-bottom: 60px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        .tips-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+            gap: 30px;
         }
 
-        .example-item {
-            background: #f7fafc;
-            border-left: 4px solid #5a67d8;
-            padding: 20px;
-            border-radius: 12px;
+        .tip-item {
+            background: #f9f9f9;
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 5px solid #333;
             transition: all 0.3s ease;
-            cursor: pointer;
         }
 
-        .example-item:hover {
-            background: #edf2f7;
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        .tip-item:hover {
+            background: #e0e0e0;
+            transform: translateY(-3px);
         }
 
-        .example-original {
-            font-style: italic;
-            color: #e53e3e;
+        .tip-title {
+            font-size: 1.2rem;
             margin-bottom: 10px;
-            font-weight: 500;
+            font-weight: 600;
         }
 
-        .example-translation {
-            color: #38a169;
-            font-weight: 500;
+        .tip-description {
+            font-size: 1rem;
+            color: #555;
+            line-height: 1.6;
         }
 
         /* Translator Section */
         .translator-section {
             background: white;
             border-radius: 20px;
-            padding: 40px;
+            padding: 60px 40px;
             box-shadow: 0 15px 35px rgba(0,0,0,0.1);
             backdrop-filter: blur(10px);
         }
 
         .input-group {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         .input-group label {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             font-weight: 600;
-            color: #4a5568;
+            color: #333;
+            font-size: 1.1rem;
         }
 
         textarea {
             width: 100%;
-            padding: 15px;
-            border: 2px solid #e2e8f0;
+            padding: 18px;
+            border: 2px solid #ddd;
             border-radius: 12px;
             font-size: 1rem;
             resize: vertical;
             transition: all 0.3s ease;
             font-family: inherit;
+            background: #fafafa;
         }
 
         textarea:focus {
             outline: none;
-            border-color: #5a67d8;
-            box-shadow: 0 0 0 3px rgba(90, 103, 216, 0.1);
+            border-color: #333;
+            box-shadow: 0 0 0 3px rgba(0,0,0,0.1);
+            background: white;
         }
 
         .translate-btn {
             width: 100%;
-            background: linear-gradient(135deg, #5a67d8, #667eea);
+            background: linear-gradient(135deg, #333, #666);
             color: white;
             border: none;
-            padding: 15px 30px;
+            padding: 18px 30px;
             border-radius: 12px;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -170,16 +253,18 @@
             align-items: center;
             justify-content: center;
             gap: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
         .translate-btn:hover:not(:disabled) {
             transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(90, 103, 216, 0.3);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
         }
 
         .translate-btn:disabled {
-            background: #cbd5e0;
+            background: #ccc;
             cursor: not-allowed;
+            box-shadow: none;
         }
 
         .spinner {
@@ -200,54 +285,59 @@
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         .quick-example-btn {
-            background: #edf2f7;
-            border: 2px solid #e2e8f0;
-            border-radius: 20px;
-            padding: 8px 16px;
-            font-size: 0.9rem;
+            background: #f0f0f0;
+            border: 2px solid #ddd;
+            border-radius: 25px;
+            padding: 10px 20px;
+            font-size: 0.95rem;
             cursor: pointer;
             transition: all 0.3s ease;
-            color: #4a5568;
+            color: #333;
         }
 
         .quick-example-btn:hover {
-            background: #5a67d8;
+            background: #333;
             color: white;
-            border-color: #5a67d8;
+            border-color: #333;
         }
 
         .error-message {
-            background: #fed7d7;
-            color: #c53030;
+            background: #ffe6e6;
+            color: #d63031;
             padding: 15px;
             border-radius: 8px;
             margin-top: 15px;
             display: none;
+            border-left: 4px solid #d63031;
         }
 
         .success-message {
-            background: #c6f6d5;
-            color: #276749;
+            background: #e6ffe6;
+            color: #00b894;
             padding: 15px;
             border-radius: 8px;
             margin-top: 15px;
             display: none;
+            border-left: 4px solid #00b894;
         }
 
         .footer {
             text-align: center;
-            color: white;
+            color: #666;
             margin-top: 60px;
-            padding: 20px;
+            padding: 30px 20px;
+            background: rgba(0,0,0,0.05);
+            border-radius: 20px;
         }
 
         .footer a {
-            color: #90cdf4;
+            color: #333;
             text-decoration: none;
+            font-weight: 600;
         }
 
         .footer a:hover {
@@ -256,20 +346,28 @@
 
         @media (max-width: 768px) {
             .hero h1 {
-                font-size: 2.5rem;
+                font-size: 2.8rem;
             }
             
             .hero p {
-                font-size: 1.1rem;
+                font-size: 1.2rem;
             }
             
-            .examples-section,
-            .translator-section {
-                padding: 20px;
-            }
-            
-            .examples-grid {
+            .about-content {
                 grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .steps-grid,
+            .tips-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-section,
+            .how-to-section,
+            .tips-section,
+            .translator-section {
+                padding: 30px 20px;
             }
         }
     </style>
@@ -279,37 +377,79 @@
         <!-- Hero Section -->
         <section class="hero">
             <h1>🌸 Penerjemah Bahasa Wanita</h1>
-            <p>Memahami komunikasi dengan lebih baik menggunakan AI. Terjemahkan ucapan tersirat menjadi makna yang sebenarnya.</p>
-            <a href="#translator" class="cta-btn">Mulai Terjemahkan</a>
+            <p>Memahami komunikasi wanita dengan lebih baik melalui AI canggih. Terjemahkan ucapan tersirat menjadi makna yang sebenarnya untuk komunikasi yang lebih efektif.</p>
+            <a href="#translator" class="cta-btn">Mulai Terjemahkan Sekarang</a>
         </section>
 
-        <!-- Examples Section -->
-        <section class="examples-section">
-            <h2 class="section-title">📚 Contoh Terjemahan</h2>
-            <div class="examples-grid">
-                <div class="example-item" onclick="setExample('Terserah kamu deh...')">
-                    <div class="example-original">"Terserah kamu deh..."</div>
-                    <div class="example-translation">→ "Saya merasa kesal karena pendapat saya tidak didengar. Saya ingin Anda mempertimbangkan perasaan saya dalam mengambil keputusan ini."</div>
+        <!-- About Section -->
+        <section class="about-section">
+            <h2 class="section-title">Tentang Web Ini</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p><strong>Penerjemah Bahasa Wanita</strong> adalah alat AI inovatif yang membantu Anda memahami komunikasi wanita yang sering kali tidak langsung atau tersirat. Banyak wanita menggunakan bahasa yang halus, sarkastis, atau penuh nuansa emosional yang sulit dipahami oleh pria.</p>
+                    <p>Web ini menggunakan teknologi AI dari Google Gemini untuk menganalisis ucapan dan memberikan terjemahan yang jelas, sopan, dan konstruktif. Tujuannya adalah meningkatkan komunikasi antar gender, mengurangi miskomunikasi, dan membangun hubungan yang lebih baik.</p>
+                    <p>Dengan alat ini, Anda bisa belajar bagaimana cara merespons dengan tepat, menghindari kesalahpahaman, dan menunjukkan empati yang lebih baik.</p>
                 </div>
-                <div class="example-item" onclick="setExample('Gak apa-apa kok')">
-                    <div class="example-original">"Gak apa-apa kok"</div>
-                    <div class="example-translation">→ "Sebenarnya saya merasa kecewa, tapi saya tidak ingin membuat masalah. Saya berharap Anda bisa memahami perasaan saya tanpa saya harus menjelaskan secara detail."</div>
+                <div class="about-image">
+                    <img src="https://via.placeholder.com/400x300/cccccc/333333?text=AI+Translator" alt="AI Translator Illustration">
                 </div>
-                <div class="example-item" onclick="setExample('Kamu pasti lupa ya...')">
-                    <div class="example-original">"Kamu pasti lupa ya..."</div>
-                    <div class="example-translation">→ "Saya merasa tidak diprioritaskan. Hal ini penting bagi saya dan saya berharap Anda bisa lebih memperhatikan hal-hal yang berarti untuk saya."</div>
+            </div>
+        </section>
+
+        <!-- How to Use Section -->
+        <section class="how-to-section">
+            <h2 class="section-title">Cara Penggunaan</h2>
+            <div class="steps-grid">
+                <div class="step-item">
+                    <div class="step-number">1</div>
+                    <div class="step-title">Masukkan Ucapan</div>
+                    <div class="step-description">Ketik atau tempel ucapan wanita yang ingin Anda pahami ke dalam kotak input.</div>
                 </div>
-                <div class="example-item" onclick="setExample('Udah tau aja deh...')">
-                    <div class="example-original">"Udah tau aja deh..."</div>
-                    <div class="example-translation">→ "Saya merasa Anda kurang peka terhadap situasi ini. Saya berharap Anda bisa lebih proaktif dalam memahami apa yang saya butuhkan."</div>
+                <div class="step-item">
+                    <div class="step-number">2</div>
+                    <div class="step-title">Klik Terjemahkan</div>
+                    <div class="step-description">Tekan tombol "Terjemahkan" dan biarkan AI memproses ucapan tersebut.</div>
                 </div>
-                <div class="example-item" onclick="setExample('Capek deh ngomong sama kamu')">
-                    <div class="example-original">"Capek deh ngomong sama kamu"</div>
-                    <div class="example-translation">→ "Saya merasa frustrasi karena komunikasi kita tidak efektif. Saya butuh Anda mendengarkan dengan lebih baik dan memahami perspektif saya."</div>
+                <div class="step-item">
+                    <div class="step-number">3</div>
+                    <div class="step-title">Baca Terjemahan</div>
+                    <div class="step-description">Dapatkan penjelasan mendalam tentang makna sebenarnya di balik ucapan tersebut.</div>
                 </div>
-                <div class="example-item" onclick="setExample('Iya iya... bener kamu')">
-                    <div class="example-original">"Iya iya... bener kamu"</div>
-                    <div class="example-translation">→ "Saya tidak setuju dengan Anda, tapi saya memilih untuk tidak berdebat. Saya berharap Anda bisa lebih terbuka terhadap perspektif yang berbeda."</div>
+                <div class="step-item">
+                    <div class="step-number">4</div>
+                    <div class="step-title">Pelajari & Terapkan</div>
+                    <div class="step-description">Gunakan wawasan ini untuk merespons dengan lebih baik dan meningkatkan komunikasi Anda.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tips Section -->
+        <section class="tips-section">
+            <h2 class="section-title">Tips Menghadapi Wanita</h2>
+            <div class="tips-grid">
+                <div class="tip-item">
+                    <div class="tip-title">Dengarkan dengan Empati</div>
+                    <div class="tip-description">Ketika wanita berbicara, fokuslah pada emosi di balik kata-kata. Jangan hanya mendengar apa yang dikatakan, tapi juga bagaimana cara mengatakannya.</div>
+                </div>
+                <div class="tip-item">
+                    <div class="tip-title">Tanyakan untuk Klarifikasi</div>
+                    <div class="tip-description">Jika ragu, tanyakan "Apa maksudmu?" atau "Bagaimana perasaanmu sebenarnya?" Ini menunjukkan bahwa Anda peduli dan ingin memahami.</div>
+                </div>
+                <div class="tip-item">
+                    <div class="tip-title">Hindari Asumsi</div>
+                    <div class="tip-description">Jangan berasumsi bahwa Anda tahu apa yang dipikirkan. Setiap orang unik, dan komunikasi wanita bisa sangat subjektif.</div>
+                </div>
+                <div class="tip-item">
+                    <div class="tip-title">Tunjukkan Perhatian</div>
+                    <div class="tip-description">Ingat detail kecil seperti tanggal penting atau preferensi. Ini menunjukkan bahwa Anda benar-benar memperhatikan.</div>
+                </div>
+                <div class="tip-item">
+                    <div class="tip-title">Berkomunikasi Jelas</div>
+                    <div class="tip-description">Ekspresikan perasaan dan pikiran Anda dengan jujur tapi lembut. Hindari bahasa yang ambigu jika memungkinkan.</div>
+                </div>
+                <div class="tip-item">
+                    <div class="tip-title">Bersabar dan Belajar</div>
+                    <div class="tip-description">Komunikasi adalah keterampilan yang bisa dipelajari. Bersabarlah dengan diri sendiri dan orang lain dalam proses ini.</div>
                 </div>
             </div>
         </section>
