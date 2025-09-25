@@ -284,22 +284,120 @@
         .suggestion-text{font-weight:600;color:var(--text);font-size:1rem}
         .suggestion-reason{font-size:0.9rem;color:var(--muted);margin-top:6px}
 
-        /* footer - improve with more content and links */
+        /* footer - make more elegant and tidy */
         footer{
-            margin-top:40px;
-            text-align:center;
-            color:var(--muted);
-            font-size:0.95rem;
-            padding:48px 6vw;
-            background: linear-gradient(180deg, rgba(0,0,0,0.02), rgba(0,0,0,0.05));
-            border-top:1px solid rgba(0,0,0,0.03);
+            margin-top:60px;
+            background: linear-gradient(180deg, rgba(0,0,0,0.03), rgba(0,0,0,0.08));
+            border-top: 3px solid var(--accent);
+            padding: 60px 6vw 40px;
+            position: relative;
         }
-        .footer-content{max-width:1000px;margin:0 auto}
-        .footer-links{display:flex;justify-content:center;gap:24px;margin-bottom:16px;flex-wrap:wrap}
-        .footer-links a{color:var(--accent);text-decoration:none;font-weight:600;padding:8px 12px;border-radius:8px;transition:background 0.3s ease}
-        .footer-links a:hover{background:rgba(0,0,0,0.05)}
-        .footer-bottom{margin-top:20px;padding-top:20px;border-top:1px solid rgba(0,0,0,0.05)}
-        .footer-bottom p{margin:0}
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+        .footer-content{
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 40px;
+            align-items: start;
+        }
+        .footer-brand{
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .footer-brand .logo{
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #fff, #f0f0f0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow);
+        }
+        .footer-brand h3{
+            font-size: 1.2rem;
+            margin: 0;
+            color: var(--accent);
+            font-weight: 700;
+        }
+        .footer-brand p{
+            margin: 0;
+            color: var(--muted);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        .footer-nav{
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .footer-nav h4{
+            margin: 0 0 8px;
+            font-size: 1rem;
+            color: var(--accent);
+            font-weight: 600;
+        }
+        .footer-links{
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .footer-links a{
+            color: var(--muted);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 6px 0;
+            transition: color 0.3s ease;
+        }
+        .footer-links a:hover{
+            color: var(--accent);
+        }
+        .footer-bottom{
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(0,0,0,0.1);
+            text-align: center;
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+        .footer-bottom p{
+            margin: 4px 0;
+        }
+        .footer-bottom a{
+            color: var(--accent);
+            font-weight: 600;
+            text-decoration: none;
+        }
+        .footer-bottom a:hover{
+            text-decoration: underline;
+        }
+
+        /* responsive footer */
+        @media (max-width: 768px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            .footer-nav {
+                flex-direction: row;
+                justify-content: space-around;
+            }
+            .footer-links {
+                align-items: center;
+            }
+        }
     </style>
 </head>
 <body>
@@ -472,18 +570,35 @@
 
         <footer>
             <div class="footer-content">
-                <div class="footer-links">
-                    <a href="#about">Tentang</a>
-                    <a href="#how">Cara Kerja</a>
-                    <a href="#tips">Tips</a>
-                    <a href="#translator">Translator</a>
-                    <a href="https://github.com/fikrisn" target="_blank">GitHub</a>
-                    <a href="mailto:contact@example.com">Kontak</a>
+                <div class="footer-brand">
+                    <div class="logo">
+                        <img src="/public/logo.png" alt="Logo Penerjemah Bahasa Wanita" style="width:100%;height:100%;border-radius:10px;object-fit:cover;">
+                    </div>
+                    <h3>Penerjemah Bahasa Wanita</h3>
+                    <p>Alat AI inovatif untuk memahami komunikasi wanita dengan lebih baik, membangun empati dan koneksi yang lebih kuat.</p>
                 </div>
-                <div class="footer-bottom">
-                    <p>© 2025 <strong>Penerjemah Bahasa Wanita</strong> — Alat AI untuk komunikasi yang lebih baik dan empati.</p>
-                    <p>Dibuat oleh <a href="https://github.com/fikrisn" target="_blank">FkrDev</a> · Privasi diutamakan · Gunakan dengan bijak untuk membangun hubungan yang lebih kuat.</p>
+                <div class="footer-nav">
+                    <div>
+                        <h4>Navigasi</h4>
+                        <div class="footer-links">
+                            <a href="#about">Tentang</a>
+                            <a href="#how">Cara Kerja</a>
+                            <a href="#tips">Tips</a>
+                            <a href="#translator">Translator</a>
+                        </div>
+                    </div>
+                    <div>
+                        <h4>Tautan</h4>
+                        <div class="footer-links">
+                            <a href="https://github.com/fikrisn" target="_blank">GitHub</a>
+                            <a href="mailto:contact@example.com">Kontak</a>
+                        </div>
+                    </div>
                 </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 <strong>Penerjemah Bahasa Wanita</strong> — Dibuat dengan ❤️ oleh <a href="https://github.com/fikrisn" target="_blank">FkrDev</a></p>
+                <p>Privasi diutamakan · Gunakan dengan bijak untuk komunikasi yang lebih baik</p>
             </div>
         </footer>
     </div>
