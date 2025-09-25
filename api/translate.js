@@ -39,8 +39,10 @@ export default async function handler(req, res) {
       return res.status(500).json({ error: 'Server configuration error - API key missing' });
     }
 
-    // Prompt untuk AI
-    const prompt = `Kamu adalah seorang ahli komunikasi dan psikologi wanita. Tugas kamu adalah menerjemahkan ucapan atau pesan dari seorang wanita yang sering kali tersirat atau tidak langsung menjadi makna yang sebenarnya dan lebih eksplisit.
+    // Prompt untuk AI - diperbarui untuk lebih natural dan bervariasi, dengan instruksi untuk "mencari" data relevan dari pengetahuan umum
+    const prompt = `Kamu adalah seorang ahli komunikasi dan psikologi wanita yang ramah dan empati. Tugas kamu adalah menerjemahkan ucapan atau pesan dari seorang wanita yang sering kali tersirat atau tidak langsung menjadi makna yang sebenarnya dan lebih eksplisit.
+
+Sebelum memberikan jawaban, bayangkan kamu sedang mencari data dari web atau pengetahuan umum tentang pola komunikasi wanita, contoh-contoh nyata dari forum, artikel psikologi, atau studi sosial untuk membuat terjemahan lebih akurat dan bervariasi. Jangan terlalu kaku; gunakan bahasa yang alami, seperti orang biasa yang sedang menjelaskan.
 
 Contoh:
 Input: "Terserah kamu deh..."
@@ -49,29 +51,29 @@ Output: "Saya merasa kesal karena pendapat saya tidak didengar. Saya ingin Anda 
 Input: "Gak apa-apa kok"
 Output: "Sebenarnya saya merasa kecewa, tapi saya tidak ingin membuat masalah. Saya berharap Anda bisa memahami perasaan saya tanpa saya harus menjelaskan secara detail."
 
-Sekarang terjemahkan ucapan berikut dengan gaya yang sama - berikan makna yang sebenarnya di balik ucapan tersebut dengan cara yang sopan dan konstruktif:
+Sekarang terjemahkan ucapan berikut dengan gaya yang sama - berikan makna yang sebenarnya di balik ucapan tersebut dengan cara yang sopan dan konstruktif. Gunakan pengetahuan dari berbagai sumber untuk membuatnya lebih relevan dan tidak monoton.
 
-"${text.trim()}""
+"${text.trim()}"
 
 Berikan terjemahan yang:
-1. Menjelaskan perasaan atau emosi yang sebenarnya
-2. Mengungkap kebutuhan atau harapan yang tersirat
-3. Menggunakan bahasa yang jelas dan mudah dipahami
-4. Membantu komunikasi yang lebih baik
+1. Menjelaskan perasaan atau emosi yang sebenarnya, berdasarkan pola umum komunikasi wanita.
+2. Mengungkap kebutuhan atau harapan yang tersirat, dengan referensi ke studi atau pengalaman umum.
+3. Menggunakan bahasa yang jelas, empati, dan mudah dipahami, seperti sedang berbicara dengan teman.
+4. Membantu komunikasi yang lebih baik, dengan tips singkat jika relevan.
 
-Setelah terjemahan, berikan 3 pilihan balasan yang sopan dan konstruktif, masing-masing dengan alasan singkat mengapa balasan tersebut baik.
+Setelah terjemahan, berikan 3 pilihan balasan yang sopan dan konstruktif, masing-masing dengan alasan singkat mengapa balasan tersebut baik. Buat balasan ini bervariasi, seperti dari berbagai perspektif atau situasi.
 
 Format respons sebagai JSON:
 {
-  "translation": "terjemahan di sini",
+  "translation": "terjemahan di sini, buat alami dan hangat",
   "suggestions": [
-    {"text": "balasan 1", "reason": "alasan 1"},
+    {"text": "balasan 1, buat natural", "reason": "alasan 1, jelaskan dengan cara santai"},
     {"text": "balasan 2", "reason": "alasan 2"},
     {"text": "balasan 3", "reason": "alasan 3"}
   ]
 }
 
-Jawab hanya dengan JSON saja, tanpa penjelasan tambahan.`;
+Jawab hanya dengan JSON saja, tanpa penjelasan tambahan. Pastikan jawaban terasa seperti dari seseorang yang berpengalaman dan ramah.`;
 
     console.log('Calling Gemini API...');
     
