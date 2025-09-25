@@ -371,9 +371,6 @@
                 // Construct API URL
                 const API_URL = '/api/translate';
                 
-                console.log('Calling API:', API_URL);
-                console.log('Request payload:', { text: inputText });
-                
                 const response = await fetch(API_URL, {
                     method: 'POST',
                     headers: {
@@ -383,9 +380,6 @@
                         text: inputText
                     })
                 });
-
-                console.log('Response status:', response.status);
-                console.log('Response headers:', Object.fromEntries(response.headers.entries()));
 
                 // Show debug info
                 showDebug(`Status: ${response.status}, URL: ${API_URL}`);
@@ -400,12 +394,10 @@
                         errorData = { error: errorText };
                     }
                     
-                    console.error('API Error:', errorData);
                     throw new Error(`HTTP ${response.status}: ${errorData.error || 'Unknown error'}`);
                 }
 
                 const data = await response.json();
-                console.log('Response data:', data);
                 
                 if (data.translation) {
                     outputTextArea.value = data.translation;
@@ -415,7 +407,6 @@
                 }
 
             } catch (error) {
-                console.error('Error:', error);
                 outputTextArea.value = '';
                 
                 if (error.message.includes('404')) {
